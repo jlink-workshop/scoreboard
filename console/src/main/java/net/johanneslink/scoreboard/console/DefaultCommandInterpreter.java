@@ -23,11 +23,15 @@ public class DefaultCommandInterpreter implements CommandInterpreter {
 			case "score 3":
 			case "3":
 				return Action.SCORE_3;
+			case "dec":
+			case "-":
+				return Action.MINUS;
 			case "help":
 			case "h":
 			case "?":
 				return Action.HELP;
 			case "+":
+			case "inc":
 				return Action.PLUS;
 			default:
 				return Action.UNKNOWN;

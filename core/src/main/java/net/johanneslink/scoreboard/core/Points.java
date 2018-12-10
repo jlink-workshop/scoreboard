@@ -12,4 +12,8 @@ public enum Points {
 	public int useToInc(int number) {
 		return number + value;
 	}
+
+	public int useToDecr(int number) {
+		return number - value;
+	}
 }

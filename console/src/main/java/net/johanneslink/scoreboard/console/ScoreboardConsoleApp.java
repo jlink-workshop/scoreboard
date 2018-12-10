@@ -46,6 +46,9 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 			case PLUS:
 				presenter.score(Points.ONE, true);
 				break;
+			case MINUS:
+				presenter.deScore();
+				break;
 			case HELP:
 				printHelpString();
 				break;
@@ -61,6 +64,8 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 		console.println("Score [1] - Score 1 point for selected team");
 		console.println("Score [2] - Score 2 points for selected team");
 		console.println("Score [3] - Score 3 points for selected team");
+		console.println("Score [-|dec] - Decrement by 1 point for selected team");
+		console.println("Score [+|inc] - Score 1 point for selected team keeping team.");
 		console.println("[Q]uit - Terminate the Scoreboard app");
 		console.println("[?|H]elp - Print this message");
 	}

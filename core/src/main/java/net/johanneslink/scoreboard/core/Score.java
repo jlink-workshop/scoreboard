@@ -11,7 +11,14 @@ public class Score {
 	}
 
 	public static Score ab(int teamA, int teamB) {
-		if (teamA < 0 || teamB < 0) throw new IllegalArgumentException("Scores cannot be negative");
+
+		if (teamA < 0) {
+			return new Score(0, teamB);
+		}
+
+		if (teamB < 0) {
+			return new Score(teamA, 0);
+		}
 		return new Score(teamA, teamB);
 	}
 
@@ -51,4 +58,13 @@ public class Score {
 	Score incTeamBBy(Points points) {
 		return ab(teamA, points.useToInc(teamB));
 	}
+
+	Score decrTeamABy(Points points) {
+		return ab(points.useToDecr(teamA), teamB);
+	}
+
+	Score decrTeamBBy(Points points) {
+		return ab(teamA, points.useToDecr(teamB));
+	}
+
 }

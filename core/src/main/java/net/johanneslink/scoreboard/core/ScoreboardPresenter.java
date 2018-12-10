@@ -37,10 +37,25 @@ public class ScoreboardPresenter {
 		}
 	}
 
+	public void deScore() {
+		Score newScore = currentScore;
+		if (currentSelectedTeam == Team.A) {
+			newScore = currentScore.decrTeamABy(Points.ONE);
+		}
+		if (currentSelectedTeam == Team.B) {
+			newScore = currentScore.decrTeamBBy(Points.ONE);
+		}
+		setScore(newScore);
+	}
+
 	public void setScore(Score newScore) {
 		if (!currentScore.equals(newScore)) {
 			currentScore = newScore;
 			displayCurrentScore();
+		} else {
+			if (currentSelectedTeam != Team.NONE) {
+				displayCurrentScore();
+			}
 		}
 	}
 

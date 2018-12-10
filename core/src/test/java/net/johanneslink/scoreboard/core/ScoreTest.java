@@ -7,20 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class ScoreTest {
 
 	@Test
-	void negativeScoreForTeamAIsNotAllowed() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			Score.ab(-1, 1);
-		});
-	}
-
-	@Test
-	void negativeScoreForTeamBIsNotAllowed() {
-		Assertions.assertThrows(IllegalArgumentException.class, () -> {
-			Score.ab(1, -1);
-		});
-	}
-
-	@Test
 	void scoreIsFormattedWith3Digits() {
 		assertEquals("001:009", Score.ab(1, 9).toString());
 		assertEquals("011:099", Score.ab(11, 99).toString());
@@ -41,5 +27,29 @@ class ScoreTest {
 		assertEquals(Score.ab(44, 100), score.incTeamBBy(Points.ONE));
 		assertEquals(Score.ab(44, 101), score.incTeamBBy(Points.TWO));
 		assertEquals(Score.ab(44, 102), score.incTeamBBy(Points.THREE));
+	}
+
+	@Test
+	void decrementScoreOfTeamA() {
+		Score score = Score.ab(44, 99);
+		assertEquals(Score.ab(43, 99), score.decrTeamABy(Points.ONE));
+	}
+
+	@Test
+	void decrementScoreOfTeamB() {
+		Score score = Score.ab(44, 99);
+		assertEquals(Score.ab(44, 98), score.decrTeamBBy(Points.ONE));
+	}
+
+	@Test
+	void decrementScoreOfTeamA_whenScoreWas0_shouldStay0() {
+		Score score = Score.ab(0, 99);
+		assertEquals(Score.ab(0, 99), score.decrTeamABy(Points.ONE));
+	}
+
+	@Test
+	void decrementScoreOfTeamB_whenScoreWas0_shouldStay0() {
+		Score score = Score.ab(55, 0);
+		assertEquals(Score.ab(55, 0), score.decrTeamBBy(Points.ONE));
 	}
 }

@@ -73,6 +73,17 @@ class ScoreboardPresenterTest implements ScoreboardView {
 	}
 
 	@Test
+	void deScorePointsForTeamA() {
+		presenter.select(Team.A);
+		presenter.score(Points.TWO);
+		presenter.select(Team.A);
+		presenter.deScore();
+		assertEquals(Score.ab(1, 0), lastDisplayedScore);
+		presenter.deScore();
+		assertEquals(Score.ab(0, 0), lastDisplayedScore);
+	}
+
+	@Test
 	void scoreInitialPointForTeamB() {
 		presenter.select(Team.B);
 		presenter.score(Points.THREE);
@@ -88,6 +99,17 @@ class ScoreboardPresenterTest implements ScoreboardView {
 		presenter.select(Team.B);
 		presenter.score(Points.TWO);
 		assertEquals(Score.ab(22, 36), lastDisplayedScore);
+	}
+
+	@Test
+	void deScorePointsForTeamB() {
+		presenter.select(Team.B);
+		presenter.score(Points.TWO);
+		presenter.select(Team.B);
+		presenter.deScore();
+		assertEquals(Score.ab(0, 1), lastDisplayedScore);
+		presenter.deScore();
+		assertEquals(Score.ab(0, 0), lastDisplayedScore);
 	}
 
 	@Test

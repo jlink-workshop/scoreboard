@@ -106,6 +106,13 @@ class ScoreboardConsoleAppTest {
 	}
 
 	@Test
+	void actionScoreDecrementOnPresenter() {
+		when(interpreter.parse(anyString())).thenReturn(Action.MINUS, Action.QUIT);
+		app.run(presenter, interpreter);
+		verify(presenter).deScore();
+	}
+
+	@Test
 	void actionHelpDisplaysListOfCommands() {
 		when(interpreter.parse(anyString())).thenReturn(Action.HELP, Action.QUIT);
 		app.run(presenter, interpreter);
@@ -115,6 +122,7 @@ class ScoreboardConsoleAppTest {
 		verify(console).println(startsWith("Score [1] -"));
 		verify(console).println(startsWith("Score [2] -"));
 		verify(console).println(startsWith("Score [3] -"));
+		verify(console).println(startsWith("Score [-|dec] -"));
 		verify(console).println(startsWith("[Q]uit -"));
 		verify(console).println(startsWith("[?|H]elp -"));
 	}

@@ -62,5 +62,6 @@ class DefaultCommandInterpreterTest {
 	@Test
 	void interpretScorePlus() {
 		assertEquals(Action.PLUS, interpreter.parse("+"));
+		assertEquals(Action.PLUS, interpreter.parse("inc"));
 	}
 }
