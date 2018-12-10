@@ -10,7 +10,7 @@ How to run on Windows:
    
 2. Run core/run-app.bat 
 
-   <a href="./run-app.bat" download="download">Download run script</a>
+   <a href="./run-app.bat">Download run script</a>
 
    <a href="./scoreboard-console.jar" >Download run java application</a>
 
