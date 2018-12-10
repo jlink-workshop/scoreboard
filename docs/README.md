@@ -8,7 +8,7 @@ How to run on Windows:
    
    - Java Runtime Environment (JRE) at least version 8
    
-2. Run core/run-app.bat 
+2. Run run-app.bat 
 
    <a href="./run-app.bat">Download run script</a>
 
