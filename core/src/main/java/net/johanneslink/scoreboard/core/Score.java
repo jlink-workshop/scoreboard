@@ -4,6 +4,7 @@ public class Score {
 
 	private int teamA;
 	private int teamB;
+
 	private Score(int teamA, int teamB) {
 		this.teamA = teamA;
 		this.teamB = teamB;

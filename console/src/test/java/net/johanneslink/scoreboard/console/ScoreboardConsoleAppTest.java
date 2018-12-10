@@ -81,14 +81,21 @@ class ScoreboardConsoleAppTest {
 	void actionScore1CallsScorePoints1OnPresenter() {
 		when(interpreter.parse(anyString())).thenReturn(Action.SCORE_1, Action.QUIT);
 		app.run(presenter, interpreter);
-		verify(presenter).score(Points.One);
+		verify(presenter).score(Points.ONE);
 	}
 
 	@Test
 	void actionScore2CallsScorePoints2OnPresenter() {
 		when(interpreter.parse(anyString())).thenReturn(Action.SCORE_2, Action.QUIT);
 		app.run(presenter, interpreter);
-		verify(presenter).score(Points.Two);
+		verify(presenter).score(Points.TWO);
+	}
+
+	@Test
+	void actionScore3CallsScorePoints3OnPresenter() {
+		when(interpreter.parse(anyString())).thenReturn(Action.SCORE_3, Action.QUIT);
+		app.run(presenter, interpreter);
+		verify(presenter).score(Points.THREE);
 	}
 
 	@Test
@@ -100,6 +107,7 @@ class ScoreboardConsoleAppTest {
 		verify(console).println(startsWith("Select [B] -"));
 		verify(console).println(startsWith("Score [1] -"));
 		verify(console).println(startsWith("Score [2] -"));
+		verify(console).println(startsWith("Score [3] -"));
 		verify(console).println(startsWith("[Q]uit -"));
 		verify(console).println(startsWith("[?|H]elp -"));
 	}

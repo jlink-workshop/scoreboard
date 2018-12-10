@@ -15,6 +15,7 @@ public class ScoreboardSwingApp extends JFrame implements ScoreboardView {
 	private JButton score1Button;
 	private JButton score2Button;
 	private JButton score3Button;
+
 	public ScoreboardSwingApp(ScoreboardPresenter scoreboard) {
 		super("Basketball Console");
 		this.scoreboard = scoreboard;
