@@ -1,7 +1,5 @@
 package net.johanneslink.scoreboard.core;
 
-import java.util.Optional;
-
 public class ScoreboardPresenter {
 
 	private ScoreboardView view;

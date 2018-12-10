@@ -26,13 +26,13 @@ public class DefaultCommandInterpreter implements CommandInterpreter {
 			case "dec":
 			case "-":
 				return Action.MINUS;
+			case "+":
+			case "inc":
+				return Action.PLUS;
 			case "help":
 			case "h":
 			case "?":
 				return Action.HELP;
-			case "+":
-			case "inc":
-				return Action.PLUS;
 			default:
 				return Action.UNKNOWN;
 		}
