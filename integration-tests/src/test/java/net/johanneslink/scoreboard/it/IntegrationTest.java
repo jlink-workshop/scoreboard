@@ -34,7 +34,7 @@ public class IntegrationTest {
 		assertEquals(stdoutLines.get(0), "000:000");
 	}
 
-	// @Test
+	@Test
 	void consoleAppInterpretsInputLineByLineAndCanBeQuit() {
 		// Todo: Redirect stdin to accept input from tests
 		fail("Not implemented yet");

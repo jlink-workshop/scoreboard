@@ -1,8 +1,5 @@
 package swingUi;
 
-import javax.swing.*;
-
-import org.junit.jupiter.api.*;
 import org.netbeans.jemmy.operators.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,19 +8,6 @@ class ConsoleGUITest {
 
 	private int tsMinutes = 0;
 	private int tsSeconds = 0;
-
-	class GameTimeServiceStub implements GameTimeService {
-		@Override
-		public int getRemainingMinutes() {
-			return tsMinutes;
-		}
-
-		@Override
-		public int getRemainingSeconds() {
-			return tsSeconds;
-		}
-	}
-
 	private JFrameOperator mainFrame;
 	private ScoreboardPresenter scoreboard;
 
@@ -145,6 +129,18 @@ class ConsoleGUITest {
 		try {
 			Thread.sleep(msecs);
 		} catch (InterruptedException ignore) {
+		}
+	}
+
+	class GameTimeServiceStub implements GameTimeService {
+		@Override
+		public int getRemainingMinutes() {
+			return tsMinutes;
+		}
+
+		@Override
+		public int getRemainingSeconds() {
+			return tsSeconds;
 		}
 	}
 

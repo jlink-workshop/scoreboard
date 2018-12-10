@@ -2,17 +2,16 @@ package net.johanneslink.scoreboard.core;
 
 public class Score {
 
-	public static Score ab(int teamA, int teamB) {
-		if (teamA < 0 || teamB < 0) throw new IllegalArgumentException("Scores cannot be negative");
-		return new Score(teamA, teamB);
-	}
-
 	private int teamA;
 	private int teamB;
-
 	private Score(int teamA, int teamB) {
 		this.teamA = teamA;
 		this.teamB = teamB;
+	}
+
+	public static Score ab(int teamA, int teamB) {
+		if (teamA < 0 || teamB < 0) throw new IllegalArgumentException("Scores cannot be negative");
+		return new Score(teamA, teamB);
 	}
 
 	@Override

@@ -1,33 +1,12 @@
 package swingUi;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
 public class ScoreboardSwingApp extends JFrame implements ScoreboardView {
 
 	private static final long serialVersionUID = 1L;
-
-	private static class FakeTimeService implements GameTimeService {
-		int secs = 60;
-
-		@Override
-		public int getRemainingSeconds() {
-			if (secs > 0) secs--;
-			else secs = 59;
-			return secs;
-		}
-
-		@Override
-		public int getRemainingMinutes() {
-			return 9;
-		}
-	}
-
 	private static Font SCORE_FONT = new Font("Courier New", Font.BOLD, 48);
 	private static Font TIME_FONT = new Font("Courier New", Font.PLAIN, 24);
 	private static javax.swing.Timer checkTimeTrigger;
-
+	private final ScoreboardPresenter scoreboard;
 	private JLabel scoreALabel;
 	private JLabel scoreBLabel;
 	private JLabel timeLabel;
@@ -36,20 +15,18 @@ public class ScoreboardSwingApp extends JFrame implements ScoreboardView {
 	private JButton score1Button;
 	private JButton score2Button;
 	private JButton score3Button;
-	private final ScoreboardPresenter scoreboard;
+	public ScoreboardSwingApp(ScoreboardPresenter scoreboard) {
+		super("Basketball Console");
+		this.scoreboard = scoreboard;
+		initComponents();
+		scoreboard.registerViewer(this);
+	}
 
 	public static void main(String[] args) {
 		GameTimeService timeService = new FakeTimeService();
 		ScoreboardPresenter sc = new ScoreboardPresenter(timeService);
 		new ScoreboardSwingApp(sc).setVisible(true);
 		startTimeCheckTriggerOn(sc);
-	}
-
-	public ScoreboardSwingApp(ScoreboardPresenter scoreboard) {
-		super("Basketball Console");
-		this.scoreboard = scoreboard;
-		initComponents();
-		scoreboard.registerViewer(this);
 	}
 
 	private static void startTimeCheckTriggerOn(final ScoreboardPresenter scoreboard) {
@@ -155,13 +132,13 @@ public class ScoreboardSwingApp extends JFrame implements ScoreboardView {
 		super.dispose();
 	}
 
-	;
-
 	@Override
 	public void displayScore(Score score) {
 		scoreALabel.setText(Integer.toString(score.getA()));
 		scoreBLabel.setText(Integer.toString(score.getB()));
 	}
+
+	;
 
 	@Override
 	public void displayGameTime(final String time) {
@@ -172,6 +149,22 @@ public class ScoreboardSwingApp extends JFrame implements ScoreboardView {
 				timeLabel.setText(time);
 			}
 		});
+	}
+
+	private static class FakeTimeService implements GameTimeService {
+		int secs = 60;
+
+		@Override
+		public int getRemainingSeconds() {
+			if (secs > 0) secs--;
+			else secs = 59;
+			return secs;
+		}
+
+		@Override
+		public int getRemainingMinutes() {
+			return 9;
+		}
 	}
 
 	;

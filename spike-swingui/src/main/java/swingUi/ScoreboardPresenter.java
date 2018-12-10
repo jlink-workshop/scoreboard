@@ -1,10 +1,10 @@
 package swingUi;
 
 public class ScoreboardPresenter {
+	private final GameTimeService timeService;
 	private Score score = Score.ab(0, 0);
 	private Team selectedTeam = Team.NONE;
 	private ScoreboardView view = ScoreboardView.NULL;
-	private final GameTimeService timeService;
 
 	public ScoreboardPresenter(GameTimeService timeService) {
 		this.timeService = timeService;
