@@ -43,6 +43,9 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 			case SCORE_3:
 				presenter.score(Points.THREE);
 				break;
+			case PLUS:
+				presenter.score(Points.ONE, true);
+				break;
 			case HELP:
 				printHelpString();
 				break;

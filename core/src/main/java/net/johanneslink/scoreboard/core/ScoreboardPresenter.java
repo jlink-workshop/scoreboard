@@ -1,5 +1,7 @@
 package net.johanneslink.scoreboard.core;
 
+import java.util.Optional;
+
 public class ScoreboardPresenter {
 
 	private ScoreboardView view;
@@ -17,7 +19,7 @@ public class ScoreboardPresenter {
 		displaySelectedTeam();
 	}
 
-	public void score(Points points) {
+	public void score(Points points, Boolean... keepTeam) {
 		// TODO Replace conditional with polymorphism
 		Score newScore = currentScore;
 		if (currentSelectedTeam == Team.A) {
@@ -27,7 +29,12 @@ public class ScoreboardPresenter {
 			newScore = currentScore.incTeamBBy(points);
 		}
 		setScore(newScore);
-		select(Team.NONE);
+
+		Boolean keep = keepTeam != null && keepTeam.length > 0 ? keepTeam[0] : false;
+
+		if (!keep) {
+			select(Team.NONE);
+		}
 	}
 
 	public void setScore(Score newScore) {

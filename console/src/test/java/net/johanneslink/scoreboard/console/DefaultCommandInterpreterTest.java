@@ -58,4 +58,9 @@ class DefaultCommandInterpreterTest {
 		assertEquals(Action.UNKNOWN, interpreter.parse("c"));
 		assertEquals(Action.UNKNOWN, interpreter.parse("xxx"));
 	}
+
+	@Test
+	void interpretScorePlus() {
+		assertEquals(Action.PLUS, interpreter.parse("+"));
+	}
 }

@@ -85,6 +85,13 @@ class ScoreboardConsoleAppTest {
 	}
 
 	@Test
+	void actionScorePlusOneCallsScorePoints1OnPresenter() {
+		when(interpreter.parse(anyString())).thenReturn(Action.PLUS, Action.QUIT);
+		app.run(presenter, interpreter);
+		verify(presenter).score(Points.ONE, true);
+	}
+
+	@Test
 	void actionScore2CallsScorePoints2OnPresenter() {
 		when(interpreter.parse(anyString())).thenReturn(Action.SCORE_2, Action.QUIT);
 		app.run(presenter, interpreter);
