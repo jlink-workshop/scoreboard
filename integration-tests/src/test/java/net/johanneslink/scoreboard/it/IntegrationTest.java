@@ -35,6 +35,7 @@ public class IntegrationTest {
 	}
 
 	@Test
+	@Disabled("Not working yet")
 	void consoleAppInterpretsInputLineByLineAndCanBeQuit() {
 		// Todo: Redirect stdin to accept input from tests
 		fail("Not implemented yet");
