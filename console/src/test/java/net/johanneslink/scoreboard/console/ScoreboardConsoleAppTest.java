@@ -81,35 +81,35 @@ class ScoreboardConsoleAppTest {
 	void actionScore1CallsScorePoints1OnPresenter() {
 		when(interpreter.parse(anyString())).thenReturn(Action.SCORE_1, Action.QUIT);
 		app.run(presenter, interpreter);
-		verify(presenter).score(Points.ONE);
+		verify(presenter).score(Points.ONE, ModifyScore.INC);
 	}
 
 	@Test
 	void actionScorePlusOneCallsScorePoints1OnPresenter() {
 		when(interpreter.parse(anyString())).thenReturn(Action.PLUS, Action.QUIT);
 		app.run(presenter, interpreter);
-		verify(presenter).score(Points.ONE, true);
+		verify(presenter).score(Points.ONE, ModifyScore.INC, true);
 	}
 
 	@Test
 	void actionScore2CallsScorePoints2OnPresenter() {
 		when(interpreter.parse(anyString())).thenReturn(Action.SCORE_2, Action.QUIT);
 		app.run(presenter, interpreter);
-		verify(presenter).score(Points.TWO);
+		verify(presenter).score(Points.TWO, ModifyScore.INC);
 	}
 
 	@Test
 	void actionScore3CallsScorePoints3OnPresenter() {
 		when(interpreter.parse(anyString())).thenReturn(Action.SCORE_3, Action.QUIT);
 		app.run(presenter, interpreter);
-		verify(presenter).score(Points.THREE);
+		verify(presenter).score(Points.THREE, ModifyScore.INC);
 	}
 
 	@Test
 	void actionScoreDecrementOnPresenter() {
 		when(interpreter.parse(anyString())).thenReturn(Action.MINUS, Action.QUIT);
 		app.run(presenter, interpreter);
-		verify(presenter).deScore();
+		verify(presenter).score(Points.ONE, ModifyScore.DEC, true);
 	}
 
 	@Test

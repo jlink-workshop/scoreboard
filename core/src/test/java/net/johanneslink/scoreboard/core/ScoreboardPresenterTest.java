@@ -43,14 +43,14 @@ class ScoreboardPresenterTest implements ScoreboardView {
 	@Test
 	void scoreInitialPointForTeamA() {
 		presenter.select(Team.A);
-		presenter.score(Points.ONE);
+		presenter.score(Points.ONE, ModifyScore.INC);
 		assertEquals(Score.ab(1, 0), lastDisplayedScore);
 	}
 
 	@Test
 	void afterScoringNoTeamIsSelected() {
 		presenter.select(Team.A);
-		presenter.score(Points.ONE);
+		presenter.score(Points.ONE, ModifyScore.INC);
 		assertEquals(Team.NONE, lastSelectedTeam);
 	}
 
@@ -59,36 +59,36 @@ class ScoreboardPresenterTest implements ScoreboardView {
 	@Test
 	void score2PointsForTeamA() {
 		presenter.select(Team.A);
-		presenter.score(Points.ONE);
+		presenter.score(Points.ONE,ModifyScore.INC);
 		presenter.select(Team.A);
-		presenter.score(Points.TWO);
+		presenter.score(Points.TWO, ModifyScore.INC);
 		assertEquals(Score.ab(3, 0), lastDisplayedScore);
 	}
 
 	@Test
 	void score3PointsForTeamA() {
 		presenter.select(Team.A);
-		presenter.score(Points.TWO);
+		presenter.score(Points.TWO, ModifyScore.INC);
 		presenter.select(Team.A);
-		presenter.score(Points.THREE);
+		presenter.score(Points.THREE, ModifyScore.INC);
 		assertEquals(Score.ab(5, 0), lastDisplayedScore);
 	}
 
 	@Test
 	void deScorePointsForTeamA() {
 		presenter.select(Team.A);
-		presenter.score(Points.TWO);
+		presenter.score(Points.TWO, ModifyScore.INC);
 		presenter.select(Team.A);
-		presenter.deScore();
+		presenter.score(Points.ONE, ModifyScore.DEC, true);
 		assertEquals(Score.ab(1, 0), lastDisplayedScore);
-		presenter.deScore();
+		presenter.score(Points.ONE, ModifyScore.DEC, true);
 		assertEquals(Score.ab(0, 0), lastDisplayedScore);
 	}
 
 	@Test
 	void scoreInitialPointForTeamB() {
 		presenter.select(Team.B);
-		presenter.score(Points.THREE);
+		presenter.score(Points.THREE, ModifyScore.INC);
 		assertEquals(Score.ab(0, 3), lastDisplayedScore);
 	}
 
@@ -96,21 +96,21 @@ class ScoreboardPresenterTest implements ScoreboardView {
 	void scorePointsForTeamBLater() {
 		presenter.setScore(Score.ab(22, 33));
 		presenter.select(Team.B);
-		presenter.score(Points.ONE);
+		presenter.score(Points.ONE, ModifyScore.INC);
 		assertEquals(Score.ab(22, 34), lastDisplayedScore);
 		presenter.select(Team.B);
-		presenter.score(Points.TWO);
+		presenter.score(Points.TWO, ModifyScore.INC);
 		assertEquals(Score.ab(22, 36), lastDisplayedScore);
 	}
 
 	@Test
 	void deScorePointsForTeamB() {
 		presenter.select(Team.B);
-		presenter.score(Points.TWO);
+		presenter.score(Points.TWO, ModifyScore.INC);
 		presenter.select(Team.B);
-		presenter.deScore();
+		presenter.score(Points.ONE, ModifyScore.DEC, true);
 		assertEquals(Score.ab(0, 1), lastDisplayedScore);
-		presenter.deScore();
+		presenter.score(Points.ONE, ModifyScore.DEC, true);
 		assertEquals(Score.ab(0, 0), lastDisplayedScore);
 	}
 
@@ -124,9 +124,9 @@ class ScoreboardPresenterTest implements ScoreboardView {
 	void ignoreScoringAttemptWhenNoTeamIsSelected() {
 		presenter.setScore(Score.ab(22, 33));
 		lastDisplayedScore = null;
-		presenter.score(Points.ONE);
-		presenter.score(Points.TWO);
-		presenter.score(Points.THREE);
+		presenter.score(Points.ONE, ModifyScore.INC);
+		presenter.score(Points.TWO, ModifyScore.INC);
+		presenter.score(Points.THREE, ModifyScore.INC);
 		assertNull(lastDisplayedScore);
 	}
 

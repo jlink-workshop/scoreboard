@@ -16,40 +16,40 @@ class ScoreTest {
 	@Test
 	void incrementScoreOfTeamA() {
 		Score score = Score.ab(12, 33);
-		assertEquals(Score.ab(13, 33), score.incTeamABy(Points.ONE));
-		assertEquals(Score.ab(14, 33), score.incTeamABy(Points.TWO));
-		assertEquals(Score.ab(15, 33), score.incTeamABy(Points.THREE));
+		assertEquals(Score.ab(13, 33), score.modifyScoreTeamA(Points.ONE, ModifyScore.INC));
+		assertEquals(Score.ab(14, 33), score.modifyScoreTeamA(Points.TWO, ModifyScore.INC));
+		assertEquals(Score.ab(15, 33), score.modifyScoreTeamA(Points.THREE, ModifyScore.INC));
 	}
 
 	@Test
 	void incrementScoreOfTeamB() {
 		Score score = Score.ab(44, 99);
-		assertEquals(Score.ab(44, 100), score.incTeamBBy(Points.ONE));
-		assertEquals(Score.ab(44, 101), score.incTeamBBy(Points.TWO));
-		assertEquals(Score.ab(44, 102), score.incTeamBBy(Points.THREE));
+		assertEquals(Score.ab(44, 100), score.modifyScoreTeamB(Points.ONE, ModifyScore.INC));
+		assertEquals(Score.ab(44, 101), score.modifyScoreTeamB(Points.TWO, ModifyScore.INC));
+		assertEquals(Score.ab(44, 102), score.modifyScoreTeamB(Points.THREE, ModifyScore.INC));
 	}
 
 	@Test
 	void decrementScoreOfTeamA() {
 		Score score = Score.ab(44, 99);
-		assertEquals(Score.ab(43, 99), score.decrTeamABy(Points.ONE));
+		assertEquals(Score.ab(43, 99), score.modifyScoreTeamA(Points.ONE, ModifyScore.DEC));
 	}
 
 	@Test
 	void decrementScoreOfTeamB() {
 		Score score = Score.ab(44, 99);
-		assertEquals(Score.ab(44, 98), score.decrTeamBBy(Points.ONE));
+		assertEquals(Score.ab(44, 98), score.modifyScoreTeamB(Points.ONE, ModifyScore.DEC));
 	}
 
 	@Test
 	void decrementScoreOfTeamA_whenScoreWas0_shouldStay0() {
 		Score score = Score.ab(0, 99);
-		assertEquals(Score.ab(0, 99), score.decrTeamABy(Points.ONE));
+		assertEquals(Score.ab(0, 99), score.modifyScoreTeamA(Points.ONE, ModifyScore.DEC));
 	}
 
 	@Test
 	void decrementScoreOfTeamB_whenScoreWas0_shouldStay0() {
 		Score score = Score.ab(55, 0);
-		assertEquals(Score.ab(55, 0), score.decrTeamBBy(Points.ONE));
+		assertEquals(Score.ab(55, 0), score.modifyScoreTeamB(Points.ONE, ModifyScore.DEC));
 	}
 }

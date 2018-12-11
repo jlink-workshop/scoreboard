@@ -53,20 +53,20 @@ public class Score {
 
 	// TODO: Replace inc/decrTeamXBy with changeTeamXBy
 
-	Score incTeamABy(Points points) {
-		return ab(points.useToInc(teamA), teamB);
+	Score modifyScoreTeamA(Points points, ModifyScore action) {
+		if(action == ModifyScore.INC) {
+			return ab(points.useToInc(teamA), teamB);
+		}else {
+			return ab(points.useToDecr(teamA), teamB);
+		}
 	}
 
-	Score incTeamBBy(Points points) {
-		return ab(teamA, points.useToInc(teamB));
-	}
-
-	Score decrTeamABy(Points points) {
-		return ab(points.useToDecr(teamA), teamB);
-	}
-
-	Score decrTeamBBy(Points points) {
-		return ab(teamA, points.useToDecr(teamB));
+	Score modifyScoreTeamB(Points points, ModifyScore action) {
+		if(action == ModifyScore.INC) {
+			return ab(teamA, points.useToInc(teamB));
+		}else {
+			return ab(teamA, points.useToDecr(teamB));
+		}
 	}
 
 }

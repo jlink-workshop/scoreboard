@@ -35,19 +35,19 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 				presenter.select(Team.B);
 				break;
 			case SCORE_1:
-				presenter.score(Points.ONE);
+				presenter.score(Points.ONE, ModifyScore.INC);
 				break;
 			case SCORE_2:
-				presenter.score(Points.TWO);
+				presenter.score(Points.TWO, ModifyScore.INC);
 				break;
 			case SCORE_3:
-				presenter.score(Points.THREE);
+				presenter.score(Points.THREE, ModifyScore.INC);
 				break;
 			case PLUS:
-				presenter.score(Points.ONE, true);
+				presenter.score(Points.ONE, ModifyScore.INC, true);
 				break;
 			case MINUS:
-				presenter.deScore();
+				presenter.score(Points.ONE, ModifyScore.DEC, true);
 				break;
 			case HELP:
 				printHelpString();
