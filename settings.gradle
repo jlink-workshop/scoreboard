@@ -1,1 +1,3 @@
 include 'core', 'console', 'integration-tests'
+include 'datastore'
+

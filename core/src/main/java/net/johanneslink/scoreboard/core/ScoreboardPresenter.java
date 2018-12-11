@@ -8,8 +8,8 @@ public class ScoreboardPresenter {
 
 	public void register(ScoreboardView view) {
 		this.view = view;
-		displayCurrentScore();
 		displaySelectedTeam();
+		//displayCurrentScore();
 	}
 
 	public void select(Team team) {
@@ -63,5 +63,9 @@ public class ScoreboardPresenter {
 	public void reset() {
 		setScore(Score.ab(0,0));
 		select(Team.NONE);
+	}
+
+	public Score getScore() {
+		return currentScore;
 	}
 }

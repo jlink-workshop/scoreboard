@@ -1,11 +1,13 @@
 package net.johanneslink.scoreboard.console;
 
 import net.johanneslink.scoreboard.core.*;
+import net.johanneslink.scoreboard.datastore.DataStore;
 
 public class ScoreboardConsoleApp implements ScoreboardView {
 
 	private Console console;
 	private ScoreboardPresenter presenter;
+	private DataStore dataStore;
 
 	public ScoreboardConsoleApp(Console console) {
 		this.console = console;
@@ -14,6 +16,8 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 	public void run(ScoreboardPresenter presenter, CommandInterpreter interpreter) {
 		presenter.register(this);
 		this.presenter = presenter;
+		this.dataStore = new DataStore();
+		presenter.setScore(dataStore.getScoreFromStorage());
 		loop(interpreter);
 	}
 
@@ -21,7 +25,10 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 		while (true) {
 			String line = console.readLine();
 			Action action = interpreter.parse(line);
-			if (action == Action.QUIT) break;
+			if (action == Action.QUIT) {
+				dataStore.saveScoreToStorage(presenter.getScore());
+			break;
+			}
 			handleAction(action, line);
 		}
 	}

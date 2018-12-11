@@ -1,8 +1,9 @@
 package net.johanneslink.scoreboard.console;
 
 import net.johanneslink.scoreboard.core.*;
+import net.johanneslink.scoreboard.datastore.DataStore;
 import org.junit.jupiter.api.*;
-import org.mockito.InOrder;
+import org.mockito.*;
 
 import static org.mockito.Mockito.*;
 
@@ -12,6 +13,7 @@ class ScoreboardConsoleAppTest {
 	private ScoreboardConsoleApp app;
 	private ScoreboardPresenter presenter;
 	private CommandInterpreter interpreter;
+	private DataStore dataStore;
 
 	@BeforeEach
 	void initialize() {
@@ -19,10 +21,12 @@ class ScoreboardConsoleAppTest {
 		app = new ScoreboardConsoleApp(console);
 		presenter = mock(ScoreboardPresenter.class);
 		interpreter = mock(CommandInterpreter.class);
+		dataStore = mock(DataStore.class);
 
 		// Default behavior of console and interpreter:
 		when(console.readLine()).thenReturn("any input");
 		when(interpreter.parse(anyString())).thenReturn(Action.QUIT);
+		when(dataStore.getScoreFromStorage()).thenReturn(Score.ab(1,1));
 	}
 
 	@Test
@@ -152,5 +156,12 @@ class ScoreboardConsoleAppTest {
 		app.displaySelectedTeam(Team.NONE);
 		verify(console, never()).println(anyString());
 	}
+
+	@Test
+	void displayScoreFromStorage() throws Exception {
+		app.run(presenter, interpreter);
+		verify(dataStore, atLeastOnce()).getScoreFromStorage();
+	}
+
 
 }
