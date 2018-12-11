@@ -29,6 +29,11 @@ public class DefaultCommandInterpreter implements CommandInterpreter {
 			case "+":
 			case "inc":
 				return Action.PLUS;
+			case "r":
+			case "reset":
+			case "Reset":
+			case "R":
+				return Action.RESET;
 			case "help":
 			case "h":
 			case "?":

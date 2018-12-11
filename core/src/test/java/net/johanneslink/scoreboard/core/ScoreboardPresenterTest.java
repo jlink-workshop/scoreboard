@@ -114,6 +114,18 @@ class ScoreboardPresenterTest implements ScoreboardView {
 		assertEquals(Score.ab(0, 0), lastDisplayedScore);
 	}
 
+
+	@Test
+	void actionResetScore() {
+		presenter.select(Team.A);
+		presenter.score(Points.TWO, ModifyScore.INC);
+		presenter.select(Team.B);
+		presenter.score(Points.ONE, ModifyScore.INC);
+		presenter.reset();
+		assertEquals(Score.ab(0, 0), lastDisplayedScore);
+		assertEquals(Team.NONE, lastSelectedTeam);
+	}
+
 	@Test
 	void settingScoreWillTriggerDisplayScore() {
 		presenter.setScore(Score.ab(22, 33));

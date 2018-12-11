@@ -60,4 +60,8 @@ public class ScoreboardPresenter {
 		view.displaySelectedTeam(currentSelectedTeam);
 	}
 
+	public void reset() {
+		setScore(Score.ab(0,0));
+		select(Team.NONE);
+	}
 }

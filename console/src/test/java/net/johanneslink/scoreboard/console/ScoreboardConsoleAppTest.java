@@ -124,6 +124,7 @@ class ScoreboardConsoleAppTest {
 		verify(console).println(startsWith("Score [3] -"));
 		verify(console).println(startsWith("Dec [-]"));
 		verify(console).println(startsWith("Inc [+]"));
+		verify(console).println(startsWith("[R]eset -"));
 		verify(console).println(startsWith("[Q]uit -"));
 		verify(console).println(startsWith("[?|H]elp -"));
 	}

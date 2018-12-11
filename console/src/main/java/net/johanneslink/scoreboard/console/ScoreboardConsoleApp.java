@@ -49,6 +49,9 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 			case MINUS:
 				presenter.score(Points.ONE, ModifyScore.DEC, true);
 				break;
+			case RESET:
+				presenter.reset();
+				break;
 			case HELP:
 				printHelpString();
 				break;
@@ -66,6 +69,7 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 		console.println("Score [3] - Score 3 points for selected team");
 		console.println("Dec [-] - Decrement by 1 point for selected team keeping team");
 		console.println("Inc [+] - Increase by 1 point for selected team keeping team");
+		console.println("[R]eset - Resets the score to 000:000");
 		console.println("[Q]uit - Terminate the Scoreboard app");
 		console.println("[?|H]elp - Print this message");
 	}
