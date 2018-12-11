@@ -17,6 +17,9 @@ public class ScoreboardPresenter {
 		displaySelectedTeam();
 	}
 
+	// TODO: Remove duplication with deScore
+	// TODO: Boolean is not a type to use in Java (unless you have to)
+	// TODO: varargs is not a way to allow SINGLE optional param
 	public void score(Points points, Boolean... keepTeam) {
 		// TODO Replace conditional with polymorphism
 		Score newScore = currentScore;
@@ -35,6 +38,7 @@ public class ScoreboardPresenter {
 		}
 	}
 
+	// TODO: Remove duplication with score
 	public void deScore() {
 		Score newScore = currentScore;
 		if (currentSelectedTeam == Team.A) {

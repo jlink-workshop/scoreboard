@@ -54,6 +54,8 @@ class ScoreboardPresenterTest implements ScoreboardView {
 		assertEquals(Team.NONE, lastSelectedTeam);
 	}
 
+	// TODO: Add test for team selection after inc / dec
+
 	@Test
 	void score2PointsForTeamA() {
 		presenter.select(Team.A);
