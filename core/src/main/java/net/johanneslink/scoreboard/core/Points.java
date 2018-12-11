@@ -9,6 +9,8 @@ public enum Points {
 		this.value = value;
 	}
 
+	// TODO: Replace useToInc/Decr with useToChange
+
 	public int useToInc(int number) {
 		return number + value;
 	}

@@ -51,6 +51,8 @@ public class Score {
 		return String.format("%03d", score);
 	}
 
+	// TODO: Replace inc/decrTeamXBy with changeTeamXBy
+
 	Score incTeamABy(Points points) {
 		return ab(points.useToInc(teamA), teamB);
 	}
