@@ -13,8 +13,10 @@ How to run on Windows:
    Download the needed files (links below).<br/>
    The JAR file has to be in the same directory as the run script.
    
-   <a href="./run-app.bat">Download run-app.bat script</a>
+   <a href="./run-app.bat">Download run-app.bat script for Windows</a>
+   
+   <a href="./run-app.sh">Download run-app.bat script for Mac and Linux</a>
 
    <a href="./scoreboard-console.jar" >Download java application</a>
 
-   Execute (e.g. double click on it) the run-app.bat script. This will start the java application.
+   Execute the run-app.bat or run-app.sh script. This will start the java application.
