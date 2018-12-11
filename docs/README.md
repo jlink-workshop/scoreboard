@@ -16,6 +16,8 @@ How to run on Windows:
    <a href="./run-app.bat">Download run-app.bat script for Windows</a>
    
    <a href="./run-app.sh">Download run-app.sh script for Mac and Linux</a>
+   Don't forget to set executable rights.
+   For example "<b>chmod u+x run-app.sh</b>"
 
    <a href="./scoreboard-console.jar" >Download java application</a>
 
