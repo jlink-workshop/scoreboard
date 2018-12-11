@@ -31,6 +31,7 @@ public class ScoreboardPresenter {
 		}
 		setScore(newScore);
 
+		// TODO: keepTeam can never be null
 		Boolean keep = keepTeam != null && keepTeam.length > 0 ? keepTeam[0] : false;
 
 		if (!keep) {
@@ -55,6 +56,7 @@ public class ScoreboardPresenter {
 			currentScore = newScore;
 			displayCurrentScore();
 		} else {
+			// TODO: Is that branch necessary? No test seems to be affected
 			if (currentSelectedTeam != Team.NONE) {
 				displayCurrentScore();
 			}
