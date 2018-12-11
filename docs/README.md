@@ -15,7 +15,7 @@ How to run on Windows:
    
    <a href="./run-app.bat">Download run-app.bat script for Windows</a>
    
-   <a href="./run-app.sh">Download run-app.bat script for Mac and Linux</a>
+   <a href="./run-app.sh">Download run-app.sh script for Mac and Linux</a>
 
    <a href="./scoreboard-console.jar" >Download java application</a>
 
