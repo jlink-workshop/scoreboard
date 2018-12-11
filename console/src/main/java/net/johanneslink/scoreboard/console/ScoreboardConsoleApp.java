@@ -6,15 +6,17 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 
 	private Console console;
 	private ScoreboardPresenter presenter;
+	private DefaultCommandInterpreter defaultCommandInterpreter;
 
 	public ScoreboardConsoleApp(Console console) {
 		this.console = console;
 	}
 
-	public void run(ScoreboardPresenter presenter, CommandInterpreter interpreter) {
+	public void run(ScoreboardPresenter presenter, DefaultCommandInterpreter defaultCommandInterpreter) {
 		presenter.register(this);
 		this.presenter = presenter;
-		loop(interpreter);
+		this.defaultCommandInterpreter = defaultCommandInterpreter;
+		loop(defaultCommandInterpreter);
 	}
 
 	private void loop(CommandInterpreter interpreter) {
@@ -72,6 +74,7 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 		console.println("[R]eset - Resets the score to 000:000");
 		console.println("[Q]uit - Terminate the Scoreboard app");
 		console.println("[?|H]elp - Print this message");
+		defaultCommandInterpreter.getCommandsList();
 	}
 
 	@Override

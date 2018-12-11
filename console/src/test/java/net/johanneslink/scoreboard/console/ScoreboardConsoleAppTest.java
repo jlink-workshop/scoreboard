@@ -11,14 +11,14 @@ class ScoreboardConsoleAppTest {
 	private Console console;
 	private ScoreboardConsoleApp app;
 	private ScoreboardPresenter presenter;
-	private CommandInterpreter interpreter;
+	private DefaultCommandInterpreter interpreter;
 
 	@BeforeEach
 	void initialize() {
 		console = mock(Console.class);
 		app = new ScoreboardConsoleApp(console);
 		presenter = mock(ScoreboardPresenter.class);
-		interpreter = mock(CommandInterpreter.class);
+		interpreter = mock(DefaultCommandInterpreter.class);
 
 		// Default behavior of console and interpreter:
 		when(console.readLine()).thenReturn("any input");

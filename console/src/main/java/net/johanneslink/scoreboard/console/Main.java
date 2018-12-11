@@ -9,7 +9,7 @@ public class Main {
 	public static void main(String args[]) {
 		Console console = new SystemConsole();
 		ScoreboardConsoleApp app = new ScoreboardConsoleApp(console);
-		CommandInterpreter interpreter = new DefaultCommandInterpreter();
+		DefaultCommandInterpreter interpreter = new DefaultCommandInterpreter();
 		app.run(new ScoreboardPresenter(), interpreter);
 	}
 
