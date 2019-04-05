@@ -1,0 +1,39 @@
+subprojects { subproj ->
+
+	repositories {
+		mavenCentral()
+	}
+
+	ext.junitPlatformVersion = '1.4.1'
+	ext.junitJupiterVersion = '5.4.1'
+
+	apply plugin: 'java'
+
+	compileTestJava {
+		sourceCompatibility = 1.8
+		targetCompatibility = 1.8
+		options.compilerArgs += '-parameters'
+	}
+
+	test {
+		useJUnitPlatform()
+
+		testLogging {
+			events "PASSED", "FAILED", "SKIPPED"
+		}
+	}
+
+	dependencies {
+		// JUnit Jupiter API and TestEngine implementation
+		testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+		testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+
+		testCompile("org.mockito:mockito-core:2.25.1")
+	}
+
+}
+
+wrapper {
+	description = 'Generates gradlew and gradlew.bat scripts'
+	gradleVersion = '5.2.1'
+}
