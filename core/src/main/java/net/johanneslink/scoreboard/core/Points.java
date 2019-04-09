@@ -6,10 +6,10 @@ public enum Points {
     private final int value;
 
     Points(int value) {
-	this.value = value;
+        this.value = value;
     }
 
     public int useToInc(int number) {
-	return number + value;
+        return number + value;
     }
 }
