@@ -27,6 +27,9 @@ public class DefaultCommandInterpreter implements CommandInterpreter {
 	case "h":
 	case "?":
 	    return Action.HELP;
+	case "reset":
+	case "r":
+	    return Action.RESET;
 	}
 	return Action.UNKNOWN;
     }
