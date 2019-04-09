@@ -3,21 +3,21 @@ package net.johanneslink.scoreboard.core;
 public class ScoreboardPresenter {
 
     private ScoreboardView view;
-    private Score currentScore = Score.ab(0, 0);
+    private Score currentScore = Score.create(0, 0);
     private Team currentSelectedTeam = Team.NONE;
 
-    public void register(ScoreboardView view) {
+    public void register(final ScoreboardView view) {
         this.view = view;
         displayCurrentScore();
         displaySelectedTeam();
     }
 
-    public void select(Team team) {
+    public void select(final Team team) {
         currentSelectedTeam = team;
         displaySelectedTeam();
     }
 
-    public void score(Points points) {
+    public void score(final Points points) {
         // TODO Replace conditional with polymorphism
         // TODO remove this comment after implementing the requested todo
         Score newScore = currentScore;
@@ -31,7 +31,7 @@ public class ScoreboardPresenter {
         select(Team.NONE);
     }
 
-    public void setScore(Score newScore) {
+    public void setScore(final Score newScore) {
         if (!currentScore.equals(newScore)) {
             currentScore = newScore;
             displayCurrentScore();
@@ -44,6 +44,10 @@ public class ScoreboardPresenter {
 
     private void displaySelectedTeam() {
         view.displaySelectedTeam(currentSelectedTeam);
+    }
+
+    public void resetScore() {
+        setScore(Score.create(0, 0));
     }
 
 }

@@ -1,8 +1,11 @@
 package net.johanneslink.scoreboard.core;
 
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 class ScoreboardPresenterTests implements ScoreboardView {
 
@@ -23,14 +26,14 @@ class ScoreboardPresenterTests implements ScoreboardView {
 
         @Test
         void initialScoreIs0to0() {
-            assertEquals(Score.ab(0, 0), lastDisplayedScore);
+            assertEquals(Score.create(0, 0), lastDisplayedScore);
         }
 
         @Test
         void scoreInitialPointForTeamA() {
             presenter.select(Team.A);
             presenter.score(Points.One);
-            assertEquals(Score.ab(1, 0), lastDisplayedScore);
+            assertEquals(Score.create(1, 0), lastDisplayedScore);
         }
 
         @Test
@@ -46,7 +49,7 @@ class ScoreboardPresenterTests implements ScoreboardView {
             presenter.score(Points.One);
             presenter.select(Team.A);
             presenter.score(Points.Two);
-            assertEquals(Score.ab(3, 0), lastDisplayedScore);
+            assertEquals(Score.create(3, 0), lastDisplayedScore);
         }
 
         @Test
@@ -55,41 +58,48 @@ class ScoreboardPresenterTests implements ScoreboardView {
             presenter.score(Points.Two);
             presenter.select(Team.A);
             presenter.score(Points.Three);
-            assertEquals(Score.ab(5, 0), lastDisplayedScore);
+            assertEquals(Score.create(5, 0), lastDisplayedScore);
         }
 
         @Test
         void scoreInitialPointForTeamB() {
             presenter.select(Team.B);
             presenter.score(Points.Three);
-            assertEquals(Score.ab(0, 3), lastDisplayedScore);
+            assertEquals(Score.create(0, 3), lastDisplayedScore);
         }
 
         @Test
         void scorePointsForTeamBLater() {
-            presenter.setScore(Score.ab(22, 33));
+            presenter.setScore(Score.create(22, 33));
             presenter.select(Team.B);
             presenter.score(Points.One);
-            assertEquals(Score.ab(22, 34), lastDisplayedScore);
+            assertEquals(Score.create(22, 34), lastDisplayedScore);
             presenter.select(Team.B);
             presenter.score(Points.Two);
-            assertEquals(Score.ab(22, 36), lastDisplayedScore);
+            assertEquals(Score.create(22, 36), lastDisplayedScore);
         }
 
         @Test
         void settingScoreWillTriggerDisplayScore() {
-            presenter.setScore(Score.ab(22, 33));
-            assertEquals(Score.ab(22, 33), lastDisplayedScore);
+            presenter.setScore(Score.create(22, 33));
+            assertEquals(Score.create(22, 33), lastDisplayedScore);
         }
 
         @Test
         void ignoreScoringAttemptWhenNoTeamIsSelected() {
-            presenter.setScore(Score.ab(22, 33));
+            presenter.setScore(Score.create(22, 33));
             lastDisplayedScore = null;
             presenter.score(Points.One);
             presenter.score(Points.Two);
             presenter.score(Points.Three);
             assertNull(lastDisplayedScore);
+        }
+
+        @Test
+        void resettingScore() {
+            presenter.setScore(Score.create(22, 33));
+            presenter.resetScore();
+            assertEquals(Score.create(0, 0), lastDisplayedScore);
         }
     }
 
@@ -116,12 +126,12 @@ class ScoreboardPresenterTests implements ScoreboardView {
     }
 
     @Override
-    public void displaySelectedTeam(Team team) {
+    public void displaySelectedTeam(final Team team) {
         lastSelectedTeam = team;
     }
 
     @Override
-    public void displayScore(Score score) {
+    public void displayScore(final Score score) {
         lastDisplayedScore = score;
     }
 }

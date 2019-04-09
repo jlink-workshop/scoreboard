@@ -2,7 +2,7 @@ package net.johanneslink.scoreboard.core;
 
 public class Score {
 
-    public static Score ab(int teamA, int teamB) {
+    public static Score create(int teamA, int teamB) {
         if (teamA < 0 || teamB < 0)
             throw new IllegalArgumentException("Scores cannot be negative");
         return new Score(teamA, teamB);
@@ -47,10 +47,10 @@ public class Score {
     }
 
     Score incTeamABy(Points points) {
-        return ab(points.useToInc(teamA), teamB);
+        return create(points.useToInc(teamA), teamB);
     }
 
     Score incTeamBBy(Points points) {
-        return ab(teamA, points.useToInc(teamB));
+        return create(teamA, points.useToInc(teamB));
     }
 }
