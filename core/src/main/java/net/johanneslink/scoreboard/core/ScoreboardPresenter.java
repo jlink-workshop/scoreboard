@@ -47,7 +47,8 @@ public class ScoreboardPresenter {
     }
 
     public void resetScore() {
-        setScore(Score.create(0, 0));
+        currentScore = Score.create(0, 0);
+        displayCurrentScore();
     }
 
 }
