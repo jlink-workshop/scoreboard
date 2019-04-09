@@ -2,8 +2,8 @@ package net.johanneslink.scoreboard.console;
 
 public interface Console {
 
-	void println(String line);
+    void println(String line);
 
-	String readLine();
+    String readLine();
 
 }
