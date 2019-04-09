@@ -114,6 +114,13 @@ class ScoreboardConsoleAppTests {
 	}
 
 	@Test
+	void actionResetSetsScoreTo0() throws Exception {
+	    when(interpreter.parse(anyString())).thenReturn(Action.RESET, Action.QUIT);
+	    app.run(presenter, interpreter);
+	    verify(presenter).resetScore();
+	}
+
+	@Test
 	void actionHelpDisplaysListOfCommands() {
 	    when(interpreter.parse(anyString())).thenReturn(Action.HELP, Action.QUIT);
 	    app.run(presenter, interpreter);
@@ -132,7 +139,7 @@ class ScoreboardConsoleAppTests {
     class ViewCallbacks {
 	@Test
 	void displayScoreIsPrintedOnConsole() throws Exception {
-	    app.displayScore(Score.ab(42, 107));
+	    app.displayScore(Score.create(42, 107));
 	    verify(console).println("042:107");
 	}
 

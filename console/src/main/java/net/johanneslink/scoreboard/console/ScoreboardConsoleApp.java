@@ -49,6 +49,9 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 	case SCORE_3:
 	    presenter.score(Points.Three);
 	    break;
+	case RESET:
+	    presenter.resetScore();
+	    break;
 	case HELP:
 	    printHelpString();
 	    break;
