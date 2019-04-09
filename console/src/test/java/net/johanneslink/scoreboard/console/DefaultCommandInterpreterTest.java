@@ -1,8 +1,8 @@
 package net.johanneslink.scoreboard.console;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class DefaultCommandInterpreterTest {
 
@@ -38,6 +38,12 @@ class DefaultCommandInterpreterTest {
     void interpretScore2() {
 	assertEquals(Action.SCORE_2, interpreter.parse("2"));
 	assertEquals(Action.SCORE_2, interpreter.parse("score 2"));
+    }
+
+    @Test
+    void interpretScore3() {
+	assertEquals(Action.SCORE_3, interpreter.parse("3"));
+	assertEquals(Action.SCORE_3, interpreter.parse("score 3"));
     }
 
     @Test

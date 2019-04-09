@@ -1,10 +1,22 @@
 package net.johanneslink.scoreboard.console;
 
-import net.johanneslink.scoreboard.core.*;
-import org.junit.jupiter.api.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.startsWith;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 
-import static org.mockito.Mockito.*;
+import net.johanneslink.scoreboard.core.Points;
+import net.johanneslink.scoreboard.core.Score;
+import net.johanneslink.scoreboard.core.ScoreboardPresenter;
+import net.johanneslink.scoreboard.core.Team;
 
 class ScoreboardConsoleAppTests {
 
@@ -38,7 +50,7 @@ class ScoreboardConsoleAppTests {
 
 	app.run(presenter, interpreter);
 
-	InOrder parsingOrder = inOrder(interpreter);
+	final InOrder parsingOrder = inOrder(interpreter);
 	parsingOrder.verify(interpreter).parse("line1");
 	parsingOrder.verify(interpreter).parse("line2");
 	parsingOrder.verify(interpreter).parse("quit");
@@ -95,6 +107,13 @@ class ScoreboardConsoleAppTests {
 	}
 
 	@Test
+	void actionScore3CallsScorePoints3OnPresenter() {
+	    when(interpreter.parse(anyString())).thenReturn(Action.SCORE_3, Action.QUIT);
+	    app.run(presenter, interpreter);
+	    verify(presenter).score(Points.Three);
+	}
+
+	@Test
 	void actionHelpDisplaysListOfCommands() {
 	    when(interpreter.parse(anyString())).thenReturn(Action.HELP, Action.QUIT);
 	    app.run(presenter, interpreter);
@@ -103,6 +122,7 @@ class ScoreboardConsoleAppTests {
 	    verify(console).println(startsWith("Select [B] -"));
 	    verify(console).println(startsWith("Score [1] -"));
 	    verify(console).println(startsWith("Score [2] -"));
+	    verify(console).println(startsWith("Score [3] -"));
 	    verify(console).println(startsWith("[Q]uit -"));
 	    verify(console).println(startsWith("[?|H]elp -"));
 	}

@@ -3,7 +3,7 @@ package net.johanneslink.scoreboard.console;
 public class DefaultCommandInterpreter implements CommandInterpreter {
 
     @Override
-    public Action parse(String line) {
+    public Action parse(final String line) {
 	switch (line.toLowerCase()) {
 	case "quit":
 	case "q":
@@ -20,6 +20,9 @@ public class DefaultCommandInterpreter implements CommandInterpreter {
 	case "score 2":
 	case "2":
 	    return Action.SCORE_2;
+	case "score 3":
+	case "3":
+	    return Action.SCORE_3;
 	case "help":
 	case "h":
 	case "?":
