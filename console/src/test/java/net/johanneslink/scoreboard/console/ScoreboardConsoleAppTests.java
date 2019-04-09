@@ -130,6 +130,7 @@ class ScoreboardConsoleAppTests {
 	    verify(console).println(startsWith("Score [1] -"));
 	    verify(console).println(startsWith("Score [2] -"));
 	    verify(console).println(startsWith("Score [3] -"));
+	    verify(console).println(startsWith("[R]eset -"));
 	    verify(console).println(startsWith("[Q]uit -"));
 	    verify(console).println(startsWith("[?|H]elp -"));
 	}
