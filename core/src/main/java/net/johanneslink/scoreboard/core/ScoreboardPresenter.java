@@ -19,7 +19,6 @@ public class ScoreboardPresenter {
 
     public void score(final Points points) {
         // TODO Replace conditional with polymorphism
-        // TODO remove this comment after implementing the requested todo
         Score newScore = currentScore;
         if (currentSelectedTeam == Team.A) {
             newScore = currentScore.incTeamABy(points);
