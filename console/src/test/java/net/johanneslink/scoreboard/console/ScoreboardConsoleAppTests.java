@@ -142,7 +142,7 @@ class ScoreboardConsoleAppTests {
 	@Test
 	void displayScoreIsPrintedOnConsole() throws Exception {
 	    app.displayScore(Score.create(42, 107));
-	    verify(console).println("042:107");
+	    verify(console).println(AsciiArtFormatter.format("042:107"));
 	}
 
 	@Test

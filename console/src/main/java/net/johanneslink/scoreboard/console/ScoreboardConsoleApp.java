@@ -79,6 +79,6 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 
     @Override
     public void displayScore(final Score score) {
-	console.println(score.toString());
+	console.println(AsciiArtFormatter.format(score.toString()));
     }
 }

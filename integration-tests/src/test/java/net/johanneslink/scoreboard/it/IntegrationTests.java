@@ -10,6 +10,7 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import net.johanneslink.scoreboard.console.AsciiArtFormatter;
 import net.johanneslink.scoreboard.console.Main;
 
 class IntegrationTests {
@@ -29,7 +31,7 @@ class IntegrationTests {
     @BeforeEach
     void init() throws IOException {
         stdout = new ByteArrayOutputStream();
-        final PrintStream ps = new PrintStream(stdout);
+        final PrintStream ps = new PrintStream(stdout, false, StandardCharsets.UTF_8.toString());
         originalStdout = System.out;
         originalStdin = System.in;
         System.setOut(ps);
@@ -52,7 +54,7 @@ class IntegrationTests {
         sysInWriter.append("q\n");
         final List<String> stdoutLines = stdoutLines();
         assertEquals(stdoutLines.size(), 1);
-        assertEquals(stdoutLines.get(0), "000:000");
+        assertEquals(AsciiArtFormatter.format("000:000"), stdoutLines.get(0));
     }
 
     // @Test
@@ -69,7 +71,8 @@ class IntegrationTests {
 
     private List<String> stdoutLines() throws IOException {
         stdout.flush();
-        final String[] lines = stdout.toString().trim().split(System.getProperty("line.separator"));
+        final String[] lines = stdout.toString(StandardCharsets.UTF_8.toString())
+                .split(System.getProperty("line.separator"));
         return Arrays.asList(lines);
     }
 }
