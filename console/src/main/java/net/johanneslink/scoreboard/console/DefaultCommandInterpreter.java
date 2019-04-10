@@ -15,9 +15,9 @@ public class DefaultCommandInterpreter implements CommandInterpreter {
 	commands.add(new Command(Action.SCORE_1, "Score [1] - Score 1 point for selected team", "score 1", "1"));
 	commands.add(new Command(Action.SCORE_2, "Score [2] - Score 2 points for selected team", "score 2", "2"));
 	commands.add(new Command(Action.SCORE_3, "Score [3] - Score 3 points for selected team", "score 3", "3"));
-	commands.add(new Command(Action.SCORE_INCREMENT, "Increment [+] - Increment score by 1 point for selected team",
+	commands.add(new Command(Action.INCREMENT, "Increment [+] - Increment score by 1 point for selected team",
 		"increment", "+"));
-	commands.add(new Command(Action.SCORE_DECREMENT, "Decrement [-] - Decrement score by 1 point for selected team",
+	commands.add(new Command(Action.DECREMENT, "Decrement [-] - Decrement score by 1 point for selected team",
 		"decrement", "-"));
 	commands.add(new Command(Action.QUIT, "[Q]uit - Terminate the Scoreboard app", "quit", "q"));
 	commands.add(new Command(Action.HELP, "[?|H]elp - Print this message", "help", "h", "?"));

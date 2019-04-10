@@ -53,12 +53,12 @@ class DefaultCommandInterpreterTest {
 
     @Test
     void interpretIncrement() {
-	assertActionsInterpreted(Action.SCORE_INCREMENT, "increment", "+");
+	assertActionsInterpreted(Action.INCREMENT, "increment", "+");
     }
 
     @Test
     void interpretDecrement() {
-	assertActionsInterpreted(Action.SCORE_DECREMENT, "decrement", "-");
+	assertActionsInterpreted(Action.DECREMENT, "decrement", "-");
     }
 
     @Test

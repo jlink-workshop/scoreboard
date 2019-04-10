@@ -125,6 +125,20 @@ class ScoreboardConsoleAppTests {
 	}
 
 	@Test
+	void actionScoreIncrementCallsIncrementPointsOnPresenter() {
+	    when(interpreter.parse(anyString())).thenReturn(Action.INCREMENT, Action.QUIT);
+	    app.run(presenter, interpreter);
+	    verify(presenter).increment();
+	}
+
+	@Test
+	void actionScoreDecrementCallsDecrementPointsOnPresenter() {
+	    when(interpreter.parse(anyString())).thenReturn(Action.DECREMENT, Action.QUIT);
+	    app.run(presenter, interpreter);
+	    verify(presenter).decrement();
+	}
+
+	@Test
 	void actionHelpDisplaysListOfCommands() {
 	    when(interpreter.parse(anyString())).thenReturn(Action.HELP, Action.QUIT);
 	    final String firstHelp = "Select [A]";

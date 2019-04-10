@@ -37,4 +37,14 @@ public class ScoreboardPresenter {
         view.displaySelectedTeam(currentSelectedTeam);
     }
 
+    public void increment() {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void decrement() {
+        // TODO Auto-generated method stub
+
+    }
+
 }

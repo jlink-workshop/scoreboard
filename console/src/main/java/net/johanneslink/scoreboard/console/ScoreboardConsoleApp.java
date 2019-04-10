@@ -52,6 +52,12 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 	case SCORE_3:
 	    presenter.score(Points.Three);
 	    break;
+	case INCREMENT:
+	    presenter.increment();
+	    break;
+	case DECREMENT:
+	    presenter.decrement();
+	    break;
 	case HELP:
 	    printHelpString(interpreter);
 	    break;
