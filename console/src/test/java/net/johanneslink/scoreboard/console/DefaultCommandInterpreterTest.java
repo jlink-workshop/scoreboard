@@ -2,6 +2,8 @@ package net.johanneslink.scoreboard.console;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 class DefaultCommandInterpreterTest {
@@ -52,5 +54,11 @@ class DefaultCommandInterpreterTest {
     @Test
     void interpretUnknownCommands() {
 	assertActionsInterpreted(Action.UNKNOWN, "c", "xxx");
+    }
+
+    @Test
+    void commandHelp() {
+	final List<String> commandHelp = interpreter.getCommandHelp();
+	assertEquals(commandHelp.get(0), "Select [A] - Select team A for scoring");
     }
 }
