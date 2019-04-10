@@ -18,15 +18,7 @@ public class ScoreboardPresenter {
     }
 
     public void score(final Points points) {
-        // TODO Replace conditional with polymorphism
-        Score newScore = currentScore;
-        if (currentSelectedTeam == Team.A) {
-            newScore = currentScore.incTeamABy(points);
-        }
-        if (currentSelectedTeam == Team.B) {
-            newScore = currentScore.incTeamBBy(points);
-        }
-        setScore(newScore);
+        setScore(currentSelectedTeam.calculateScore(points, currentScore));
         select(Team.NONE);
     }
 
