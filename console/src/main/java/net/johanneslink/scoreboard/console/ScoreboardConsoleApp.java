@@ -26,6 +26,7 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 	    final String line = console.readLine();
 	    final Action action = interpreter.parse(line);
 	    if (action == Action.QUIT) {
+		console.println("Thanx for using Deutsche Board");
 		break;
 	    }
 	    handleAction(action, line);

@@ -70,6 +70,15 @@ class ScoreboardConsoleAppTests {
 	}
 
 	@Test
+	void actionQuitPrintsGoodbyeMessage() throws Exception {
+	    when(console.readLine()).thenReturn("line1");
+	    when(interpreter.parse("line1")).thenReturn(Action.QUIT);
+
+	    app.run(presenter, interpreter);
+	    verify(console).println("Thanx for using Deutsche Board");
+	}
+
+	@Test
 	void unknownActionResultsInErrorMessage() {
 	    when(console.readLine()).thenReturn("xxx", "quit");
 	    when(interpreter.parse(anyString())).thenReturn(Action.UNKNOWN, Action.QUIT);
