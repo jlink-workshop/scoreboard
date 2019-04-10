@@ -1,25 +1,19 @@
 <assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
-  <id>bin</id>
-  <formats>
-    <format>zip</format>
-  </formats>
-  <fileSets>
-    <fileSet>
-      <directory>${project.basedir}</directory>
-      <outputDirectory>/</outputDirectory>
-      <includes>
-        <include>run-app.bat</include>
-        <include>run-app.sh</include>
-      </includes>
-    </fileSet>
-    <fileSet>
-      <directory>${project.build.directory}</directory>
-      <outputDirectory>/</outputDirectory>
-      <includes>
-        <include>*.jar</include>
-      </includes>
-    </fileSet>
-  </fileSets>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+	<id>zip</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<fileSets>		
+		<fileSet>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>run-app.bat</include>
+				<include>run-app.sh</include>
+				<include>target/scoreboard-app.jar</include>
+			</includes>
+		</fileSet>
+
+	</fileSets>
 </assembly>

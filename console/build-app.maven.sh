@@ -4,4 +4,4 @@ mvn install
 cd core
 mvn install
 popd
-mvn clean install assembly:single
+mvn clean package assembly:single assembly:single
