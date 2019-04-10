@@ -1,35 +1,56 @@
 package net.johanneslink.scoreboard.it;
 
-import java.io.*;
-import java.util.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import net.johanneslink.scoreboard.console.Main;
-import org.junit.jupiter.api.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class IntegrationTests {
 
     private ByteArrayOutputStream stdout;
+    private PrintWriter sysInWriter;
     private PrintStream originalStdout;
+    private InputStream originalStdin;
 
     @BeforeEach
-    void init() {
+    void init() throws IOException {
         stdout = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(stdout);
+        final PrintStream ps = new PrintStream(stdout);
         originalStdout = System.out;
+        originalStdin = System.in;
         System.setOut(ps);
+
+        final PipedInputStream in = new PipedInputStream();
+        final PipedOutputStream sysInStream = new PipedOutputStream(in);
+        sysInWriter = new PrintWriter(sysInStream);
+        System.setIn(in);
     }
 
     @AfterEach
     void reset() {
         System.setOut(originalStdout);
+        System.setIn(originalStdin);
     }
 
     @Test
     void startingConsoleAppDisplaysInitialScore() throws Exception {
         startConsoleApp();
-        List<String> stdoutLines = stdoutLines();
+        sysInWriter.append("q\n");
+        final List<String> stdoutLines = stdoutLines();
         assertEquals(stdoutLines.size(), 1);
         assertEquals(stdoutLines.get(0), "000:000");
     }
@@ -41,14 +62,14 @@ class IntegrationTests {
     }
 
     private void startConsoleApp(final String... args) throws InterruptedException {
-        Thread mainThread = new Thread(() -> Main.main(args));
+        final Thread mainThread = new Thread(() -> Main.main(args));
         mainThread.start();
         mainThread.join(2000);
     }
 
     private List<String> stdoutLines() throws IOException {
         stdout.flush();
-        String[] lines = stdout.toString().trim().split(System.getProperty("line.separator"));
+        final String[] lines = stdout.toString().trim().split(System.getProperty("line.separator"));
         return Arrays.asList(lines);
     }
 }
