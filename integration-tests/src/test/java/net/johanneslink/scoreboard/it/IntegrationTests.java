@@ -53,8 +53,9 @@ class IntegrationTests {
         startConsoleApp();
         sysInWriter.append("q\n");
         final List<String> stdoutLines = stdoutLines();
-        assertEquals(stdoutLines.size(), 1);
-        assertEquals(AsciiArtFormatter.format("000:000"), stdoutLines.get(0));
+        final String[] expectedScore = AsciiArtFormatter.format("000:000").split(System.lineSeparator());
+        assertEquals(expectedScore.length, stdoutLines.size());
+        assertEquals(Arrays.asList(expectedScore), stdoutLines);
     }
 
     // @Test
@@ -71,8 +72,7 @@ class IntegrationTests {
 
     private List<String> stdoutLines() throws IOException {
         stdout.flush();
-        final String[] lines = stdout.toString(StandardCharsets.UTF_8.toString())
-                .split(System.getProperty("line.separator"));
+        final String[] lines = stdout.toString(StandardCharsets.UTF_8.toString()).split(System.lineSeparator());
         return Arrays.asList(lines);
     }
 }

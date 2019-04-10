@@ -34,7 +34,7 @@ public class AsciiArtFormatter {
 		stringBuilder.append(pixelChar);
 	    }
 
-	    stringBuilder.append("\n");
+	    stringBuilder.append(System.lineSeparator());
 	}
 	return stringBuilder.toString();
     }
