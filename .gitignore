@@ -13,6 +13,7 @@ gradle-app.setting
 .classpath
 .project
 bin/
+.settings/
 
 ### IntelliJ IDEA ###
 .idea/
