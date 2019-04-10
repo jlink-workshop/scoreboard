@@ -8,7 +8,7 @@ Agile Developer Workshop - Scoreboard
 
 ## Architecture
 
-[Component overview](architecture.png "Component view of scoreboard's architecture")
+![Component overview](architecture.png "Component view of scoreboard's architecture")
 
 ### Core Package
 
