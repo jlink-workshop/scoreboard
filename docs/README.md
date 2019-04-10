@@ -4,7 +4,7 @@ The best scoring for the best teams...
 
 ## Initial installation
 
-1. Download application from [scoreboard-app.zip](https://github.com/jlink-workshop/scoreboard/releases/download/1.0.0-SNAPSHOT/scoreboard-app.zip).
+1. Download latest application from [scoreboard-app.zip](https://github.com/jlink-workshop/scoreboard/releases).
 2. Unpack the downloaded zip.
 
 ## Usage
