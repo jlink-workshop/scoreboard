@@ -45,9 +45,4 @@ public class ScoreboardPresenter {
         view.displaySelectedTeam(currentSelectedTeam);
     }
 
-    public void resetScore() {
-        currentScore = Score.create(0, 0);
-        displayCurrentScore();
-    }
-
 }

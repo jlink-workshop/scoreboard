@@ -54,14 +54,6 @@ class DefaultCommandInterpreterTest {
     }
 
     @Test
-    void interpretReset() {
-	assertEquals(Action.RESET, interpreter.parse("r"));
-	assertEquals(Action.RESET, interpreter.parse("reset"));
-	assertEquals(Action.RESET, interpreter.parse("R"));
-	assertEquals(Action.RESET, interpreter.parse("RESET"));
-    }
-
-    @Test
     void interpretUnknownCommands() {
 	assertEquals(Action.UNKNOWN, interpreter.parse("c"));
 	assertEquals(Action.UNKNOWN, interpreter.parse("xxx"));

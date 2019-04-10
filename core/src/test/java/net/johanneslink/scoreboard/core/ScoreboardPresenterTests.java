@@ -94,13 +94,6 @@ class ScoreboardPresenterTests implements ScoreboardView {
             presenter.score(Points.Three);
             assertNull(lastDisplayedScore);
         }
-
-        @Test
-        void resettingScore() {
-            presenter.setScore(Score.create(22, 33));
-            presenter.resetScore();
-            assertEquals(Score.create(0, 0), lastDisplayedScore);
-        }
     }
 
     @Nested
