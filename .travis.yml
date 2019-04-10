@@ -2,4 +2,4 @@ language: java
 
 install: true
 
-script: xvfb-run ./gradlew check
+script: xvfb-run mvn install

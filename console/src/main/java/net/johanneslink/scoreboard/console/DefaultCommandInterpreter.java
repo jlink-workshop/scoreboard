@@ -1,34 +1,39 @@
 package net.johanneslink.scoreboard.console;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class DefaultCommandInterpreter implements CommandInterpreter {
+    private final List<Command> commands;
+
+    public DefaultCommandInterpreter() {
+	commands = new ArrayList<>();
+
+	commands.add(new Command(Action.SELECT_A, "Select [A] - Select team A for scoring", "select a", "a"));
+	commands.add(new Command(Action.SELECT_B, "Select [B] - Select team B for scoring", "select b", "b"));
+	commands.add(new Command(Action.SCORE_1, "Score [1] - Score 1 point for selected team", "score 1", "1"));
+	commands.add(new Command(Action.SCORE_2, "Score [2] - Score 2 points for selected team", "score 2", "2"));
+	commands.add(new Command(Action.SCORE_3, "Score [3] - Score 3 points for selected team", "score 3", "3"));
+	commands.add(new Command(Action.QUIT, "[Q]uit - Terminate the Scoreboard app", "quit", "q"));
+	commands.add(new Command(Action.HELP, "[?|H]elp - Print this message", "help", "h", "?"));
+    }
 
     @Override
     public Action parse(final String line) {
-	switch (line.toLowerCase()) {
-	case "quit":
-	case "q":
-	    return Action.QUIT;
-	case "select a":
-	case "a":
-	    return Action.SELECT_A;
-	case "select b":
-	case "b":
-	    return Action.SELECT_B;
-	case "score 1":
-	case "1":
-	    return Action.SCORE_1;
-	case "score 2":
-	case "2":
-	    return Action.SCORE_2;
-	case "score 3":
-	case "3":
-	    return Action.SCORE_3;
-	case "help":
-	case "h":
-	case "?":
-	    return Action.HELP;
+
+	for (final Command command : commands) {
+	    if (command.handles(line.toLowerCase())) {
+		return command.getAction();
+	    }
 	}
+
 	return Action.UNKNOWN;
+    }
+
+    @Override
+    public List<String> getCommandHelp() {
+	return commands.stream().map(Command::getCommandHelp).collect(Collectors.toList());
     }
 
 }
