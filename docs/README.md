@@ -10,6 +10,7 @@ The best scoring for the best teams...
 ## Usage
 
 Run included `run-app.bat` (Windows) or `run-app.sh` (Linux/MacOSX)
+
 **Note: On MacOSX ensure you have appropriate user rights to execute the script (`chmod a+x run-app.sh`)**
 
 Type `help` or `h` to display the list of available commands.
