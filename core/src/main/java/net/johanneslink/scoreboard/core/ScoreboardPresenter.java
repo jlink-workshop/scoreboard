@@ -38,13 +38,12 @@ public class ScoreboardPresenter {
     }
 
     public void increment() {
-        // TODO Auto-generated method stub
-
+        setScore(currentSelectedTeam.calculateScore(Points.One, currentScore));
     }
 
     public void decrement() {
-        // TODO Auto-generated method stub
-
+        currentScore = currentScore.decrement(currentSelectedTeam);
+        displayCurrentScore();
     }
 
 }

@@ -2,16 +2,17 @@ package net.johanneslink.scoreboard.core;
 
 public class Score {
 
-    public static Score create(int teamA, int teamB) {
-        if (teamA < 0 || teamB < 0)
+    public static Score create(final int teamA, final int teamB) {
+        if (teamA < 0 || teamB < 0) {
             throw new IllegalArgumentException("Scores cannot be negative");
+        }
         return new Score(teamA, teamB);
     }
 
-    private int teamA;
-    private int teamB;
+    private final int teamA;
+    private final int teamB;
 
-    private Score(int teamA, int teamB) {
+    private Score(final int teamA, final int teamB) {
         this.teamA = teamA;
         this.teamB = teamB;
     }
@@ -22,10 +23,11 @@ public class Score {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null || getClass() != obj.getClass())
+    public boolean equals(final Object obj) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
-        Score other = (Score) obj;
+        }
+        final Score other = (Score) obj;
         return teamA == other.teamA && teamB == other.teamB;
     }
 
@@ -42,15 +44,23 @@ public class Score {
         return formatScore(teamB);
     }
 
-    private String formatScore(int score) {
+    private String formatScore(final int score) {
         return String.format("%03d", score);
     }
 
-    Score incTeamABy(Points points) {
+    Score incTeamABy(final Points points) {
         return create(points.useToInc(teamA), teamB);
     }
 
-    Score incTeamBBy(Points points) {
+    Score incTeamBBy(final Points points) {
         return create(teamA, points.useToInc(teamB));
+    }
+
+    Score decrement(final Team team) {
+        if (team == Team.A) {
+            return Score.create(teamA - 1, teamB);
+        } else {
+            return Score.create(teamA, teamB - 1);
+        }
     }
 }

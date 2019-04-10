@@ -62,6 +62,24 @@ class ScoreboardPresenterTests implements ScoreboardView {
         }
 
         @Test
+        void incrementPoints() {
+            presenter.select(Team.A);
+            presenter.increment();
+            assertEquals(Score.create(1, 0), lastDisplayedScore);
+            assertEquals(lastSelectedTeam, Team.A);
+        }
+
+        @Test
+        void decrementPoints() {
+            presenter.select(Team.B);
+            presenter.score(Points.Three);
+            presenter.select(Team.B);
+            presenter.decrement();
+            assertEquals(Score.create(0, 2), lastDisplayedScore);
+            assertEquals(lastSelectedTeam, Team.B);
+        }
+
+        @Test
         void scoreInitialPointForTeamB() {
             presenter.select(Team.B);
             presenter.score(Points.Three);
