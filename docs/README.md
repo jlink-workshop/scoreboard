@@ -16,3 +16,7 @@ Run included `run-app.bat` (Windows) or `run-app.sh` (Linux/MacOSX)
 **Note: On Windows you may have to run `run-app.bat` as administrator**
 
 Type `help` or `h` to display the list of available commands.
+
+## Architecture
+
+![Component overview](architecture.png "Component view of scoreboard's architecture")
