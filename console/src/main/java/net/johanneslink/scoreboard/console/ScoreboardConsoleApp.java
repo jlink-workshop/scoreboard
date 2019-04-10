@@ -1,5 +1,7 @@
 package net.johanneslink.scoreboard.console;
 
+import java.util.List;
+
 import net.johanneslink.scoreboard.core.Points;
 import net.johanneslink.scoreboard.core.Score;
 import net.johanneslink.scoreboard.core.ScoreboardPresenter;
@@ -29,11 +31,11 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 		console.println("Thanx for using Deutsche Board");
 		break;
 	    }
-	    handleAction(action, line);
+	    handleAction(action, line, interpreter);
 	}
     }
 
-    private void handleAction(final Action action, final String input) {
+    private void handleAction(final Action action, final String input, final CommandInterpreter interpreter) {
 	switch (action) {
 	case SELECT_A:
 	    presenter.select(Team.A);
@@ -51,22 +53,19 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 	    presenter.score(Points.Three);
 	    break;
 	case HELP:
-	    printHelpString();
+	    printHelpString(interpreter);
 	    break;
 	default:
 	    console.println("Unknown command '" + input + "'");
 	}
     }
 
-    private void printHelpString() {
+    private void printHelpString(final CommandInterpreter interpreter) {
+	final List<String> commandHelps = interpreter.getCommandHelp();
 	console.println("Possible commands:");
-	console.println("Select [A] - Select team A for scoring");
-	console.println("Select [B] - Select team B for scoring");
-	console.println("Score [1] - Score 1 point for selected team");
-	console.println("Score [2] - Score 2 points for selected team");
-	console.println("Score [3] - Score 3 points for selected team");
-	console.println("[Q]uit - Terminate the Scoreboard app");
-	console.println("[?|H]elp - Print this message");
+	for (final String commandHelp : commandHelps) {
+	    console.println(commandHelp);
+	}
     }
 
     @Override

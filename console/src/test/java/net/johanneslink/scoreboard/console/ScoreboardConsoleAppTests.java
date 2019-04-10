@@ -8,6 +8,8 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -125,15 +127,13 @@ class ScoreboardConsoleAppTests {
 	@Test
 	void actionHelpDisplaysListOfCommands() {
 	    when(interpreter.parse(anyString())).thenReturn(Action.HELP, Action.QUIT);
+	    final String firstHelp = "Select [A]";
+	    final String secondHelp = "Select [B]";
+	    when(interpreter.getCommandHelp()).thenReturn(Arrays.asList(new String[] { firstHelp, secondHelp }));
 	    app.run(presenter, interpreter);
 	    verify(console).println("Possible commands:");
-	    verify(console).println(startsWith("Select [A] -"));
-	    verify(console).println(startsWith("Select [B] -"));
-	    verify(console).println(startsWith("Score [1] -"));
-	    verify(console).println(startsWith("Score [2] -"));
-	    verify(console).println(startsWith("Score [3] -"));
-	    verify(console).println(startsWith("[Q]uit -"));
-	    verify(console).println(startsWith("[?|H]elp -"));
+	    verify(console).println(startsWith(firstHelp));
+	    verify(console).println(startsWith(secondHelp));
 	}
     }
 
