@@ -1,1 +1,1 @@
-java -jar target/scoreboard-app.jar &
+java -jar target/scoreboard-app.jar deutsch

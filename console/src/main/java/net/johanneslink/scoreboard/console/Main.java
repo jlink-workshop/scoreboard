@@ -11,7 +11,11 @@ import net.johanneslink.scoreboard.core.ScoreboardPresenter;
 public class Main {
 
     public static void main(final String args[]) {
-	final ResourceBundle bundle = ResourceBundle.getBundle("ScoreBoardMessages", Locale.ENGLISH);
+	Locale locale = Locale.ENGLISH;
+	if (args.length > 0 && "deutsch".equalsIgnoreCase(args[0])) {
+	    locale = Locale.GERMAN;
+	}
+	final ResourceBundle bundle = ResourceBundle.getBundle("ScoreBoardMessages", locale);
 	final TranslationService translationService = new TranslationService(bundle);
 	final Console console = new SystemConsole();
 	final ScoreboardConsoleApp app = new ScoreboardConsoleApp(console);
