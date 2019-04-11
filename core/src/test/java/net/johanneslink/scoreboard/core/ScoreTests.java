@@ -1,8 +1,9 @@
 package net.johanneslink.scoreboard.core;
 
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class ScoreTests {
 
@@ -29,7 +30,7 @@ class ScoreTests {
 
     @Test
     void incrementScoreOfTeamA() {
-        Score score = Score.create(12, 33);
+        final Score score = Score.create(12, 33);
         assertEquals(Score.create(13, 33), score.incTeamABy(Points.One));
         assertEquals(Score.create(14, 33), score.incTeamABy(Points.Two));
         assertEquals(Score.create(15, 33), score.incTeamABy(Points.Three));
@@ -37,9 +38,22 @@ class ScoreTests {
 
     @Test
     void incrementScoreOfTeamB() {
-        Score score = Score.create(44, 99);
+        final Score score = Score.create(44, 99);
         assertEquals(Score.create(44, 100), score.incTeamBBy(Points.One));
         assertEquals(Score.create(44, 101), score.incTeamBBy(Points.Two));
         assertEquals(Score.create(44, 102), score.incTeamBBy(Points.Three));
+    }
+
+    @Test
+    void decrementScoreOfTeamB() {
+        final Score score = Score.create(0, 1);
+        assertEquals(Score.create(0, 0), score.decrement(Team.B));
+    }
+
+    @Test
+    void decrementOfZeroScoreLeavesScoreAtZero() {
+        final Score score = Score.create(0, 0);
+        assertEquals(Score.create(0, 0), score.decrement(Team.A));
+        assertEquals(Score.create(0, 0), score.decrement(Team.B));
     }
 }

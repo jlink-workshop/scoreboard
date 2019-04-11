@@ -58,9 +58,9 @@ public class Score {
 
     Score decrement(final Team team) {
         if (team == Team.A) {
-            return Score.create(teamA - 1, teamB);
+            return Score.create(Math.max(0, teamA - 1), teamB);
         } else {
-            return Score.create(teamA, teamB - 1);
+            return Score.create(teamA, Math.max(0, teamB - 1));
         }
     }
 }
