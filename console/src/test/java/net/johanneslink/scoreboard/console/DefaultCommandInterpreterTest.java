@@ -1,14 +1,31 @@
 package net.johanneslink.scoreboard.console;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 class DefaultCommandInterpreterTest {
 
-    private final CommandInterpreter interpreter = new DefaultCommandInterpreter();
+    private static final String HELP_TEXT_SELECT_A = "HELP_TEXT_SELECT_A";
+
+    private CommandInterpreter interpreter;
+
+    @Mock
+    private TranslationService translationServiceMock;
+
+    @BeforeEach
+    void setup() {
+	MockitoAnnotations.initMocks(this);
+	when(translationServiceMock.translate("help_select_a")).thenReturn(HELP_TEXT_SELECT_A);
+	interpreter = new DefaultCommandInterpreter(translationServiceMock);
+    }
 
     @Test
     void interpretQuit() {
@@ -67,8 +84,8 @@ class DefaultCommandInterpreterTest {
     }
 
     @Test
-    void commandHelp() {
+    void commandHelpContainsCommandHelpText() {
 	final List<String> commandHelp = interpreter.getCommandHelp();
-	assertEquals(commandHelp.get(0), "Select [A] - Select team A for scoring");
+	assertTrue(commandHelp.contains(HELP_TEXT_SELECT_A), HELP_TEXT_SELECT_A + " not found in " + commandHelp);
     }
 }

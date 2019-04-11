@@ -7,20 +7,18 @@ import java.util.stream.Collectors;
 public class DefaultCommandInterpreter implements CommandInterpreter {
     private final List<Command> commands;
 
-    public DefaultCommandInterpreter() {
+    public DefaultCommandInterpreter(final TranslationService translationService) {
 	commands = new ArrayList<>();
 
-	commands.add(new Command(Action.SELECT_A, "Select [A] - Select team A for scoring", "select a", "a"));
-	commands.add(new Command(Action.SELECT_B, "Select [B] - Select team B for scoring", "select b", "b"));
-	commands.add(new Command(Action.SCORE_1, "Score [1] - Score 1 point for selected team", "score 1", "1"));
-	commands.add(new Command(Action.SCORE_2, "Score [2] - Score 2 points for selected team", "score 2", "2"));
-	commands.add(new Command(Action.SCORE_3, "Score [3] - Score 3 points for selected team", "score 3", "3"));
-	commands.add(new Command(Action.INCREMENT, "Increment [+] - Increment score by 1 point for selected team",
-		"increment", "+"));
-	commands.add(new Command(Action.DECREMENT, "Decrement [-] - Decrement score by 1 point for selected team",
-		"decrement", "-"));
-	commands.add(new Command(Action.QUIT, "[Q]uit - Terminate the Scoreboard app", "quit", "q"));
-	commands.add(new Command(Action.HELP, "[?|H]elp - Print this message", "help", "h", "?"));
+	commands.add(new Command(Action.SELECT_A, translationService.translate("help_select_a"), "select a", "a"));
+	commands.add(new Command(Action.SELECT_B, translationService.translate("help_select_b"), "select b", "b"));
+	commands.add(new Command(Action.SCORE_1, translationService.translate("help_score_1"), "score 1", "1"));
+	commands.add(new Command(Action.SCORE_2, translationService.translate("help_score_2"), "score 2", "2"));
+	commands.add(new Command(Action.SCORE_3, translationService.translate("help_score_3"), "score 3", "3"));
+	commands.add(new Command(Action.INCREMENT, translationService.translate("help_increment"), "increment", "+"));
+	commands.add(new Command(Action.DECREMENT, translationService.translate("help_decrement"), "decrement", "-"));
+	commands.add(new Command(Action.QUIT, translationService.translate("help_quit"), "quit", "q"));
+	commands.add(new Command(Action.HELP, translationService.translate("help_help"), "help", "h", "?"));
     }
 
     @Override
