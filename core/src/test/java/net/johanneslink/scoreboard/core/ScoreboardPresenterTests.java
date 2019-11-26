@@ -29,32 +29,32 @@ class ScoreboardPresenterTests implements ScoreboardView {
 		@Test
 		void scoreInitialPointForTeamA() {
 			presenter.select(Team.A);
-			presenter.score(Points.One);
+			presenter.score(Points.One, presenter.currentSelectedTeam);
 			assertEquals(Score.ab(1, 0), lastDisplayedScore);
 		}
 
 		@Test
 		void afterScoringNoTeamIsSelected() {
 			presenter.select(Team.A);
-			presenter.score(Points.One);
+			presenter.score(Points.One, presenter.currentSelectedTeam);
 			assertEquals(Team.NONE, lastSelectedTeam);
 		}
 
 		@Test
 		void score2PointsForTeamA() {
 			presenter.select(Team.A);
-			presenter.score(Points.One);
+			presenter.score(Points.One, presenter.currentSelectedTeam);
 			presenter.select(Team.A);
-			presenter.score(Points.Two);
+			presenter.score(Points.Two, presenter.currentSelectedTeam);
 			assertEquals(Score.ab(3, 0), lastDisplayedScore);
 		}
 
 		@Test
 		void score3PointsForTeamA() {
 			presenter.select(Team.A);
-			presenter.score(Points.Two);
+			presenter.score(Points.Two, presenter.currentSelectedTeam);
 			presenter.select(Team.A);
-			presenter.score(Points.Three);
+			presenter.score(Points.Three, presenter.currentSelectedTeam);
 			assertEquals(Score.ab(5, 0), lastDisplayedScore);
 		}
 
@@ -98,7 +98,7 @@ class ScoreboardPresenterTests implements ScoreboardView {
 		@Test
 		void scoreInitialPointForTeamB() {
 			presenter.select(Team.B);
-			presenter.score(Points.Three);
+			presenter.score(Points.Three, presenter.currentSelectedTeam);
 			assertEquals(Score.ab(0, 3), lastDisplayedScore);
 		}
 
@@ -106,10 +106,10 @@ class ScoreboardPresenterTests implements ScoreboardView {
 		void scorePointsForTeamBLater() {
 			presenter.setScore(Score.ab(22, 33));
 			presenter.select(Team.B);
-			presenter.score(Points.One);
+			presenter.score(Points.One, presenter.currentSelectedTeam);
 			assertEquals(Score.ab(22, 34), lastDisplayedScore);
 			presenter.select(Team.B);
-			presenter.score(Points.Two);
+			presenter.score(Points.Two, presenter.currentSelectedTeam);
 			assertEquals(Score.ab(22, 36), lastDisplayedScore);
 		}
 
@@ -123,9 +123,9 @@ class ScoreboardPresenterTests implements ScoreboardView {
 		void ignoreScoringAttemptWhenNoTeamIsSelected() {
 			presenter.setScore(Score.ab(22, 33));
 			lastDisplayedScore = null;
-			presenter.score(Points.One);
-			presenter.score(Points.Two);
-			presenter.score(Points.Three);
+			presenter.score(Points.One, presenter.currentSelectedTeam);
+			presenter.score(Points.Two, presenter.currentSelectedTeam);
+			presenter.score(Points.Three, presenter.currentSelectedTeam);
 			assertNull(lastDisplayedScore);
 		}
 	}

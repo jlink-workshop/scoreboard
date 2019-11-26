@@ -4,8 +4,7 @@ public class ScoreboardPresenter {
 
 	private ScoreboardView view;
 	private Score currentScore = Score.ab(0, 0);
-	private Score oldScore = Score.ab(0, 0);
-	private Team currentSelectedTeam = Team.NONE;
+	Team currentSelectedTeam = Team.NONE;
 
 	public void register(ScoreboardView view) {
 		this.view = view;
@@ -18,28 +17,16 @@ public class ScoreboardPresenter {
 		displaySelectedTeam();
 	}
 
-	public void score(Points points) {
+	public void score(Points points, Team currentSelectedTeam) {
 		// TODO Replace conditional with polymorphism
-		Score newScore = currentScore;
-		if (currentSelectedTeam == Team.A) {
-			newScore = currentScore.incTeamABy(points);
-		}
-		if (currentSelectedTeam == Team.B) {
-			newScore = currentScore.incTeamBBy(points);
-		}
-		setScore(newScore);
+		setScore(currentSelectedTeam.getScore(points, currentScore));
 		select(Team.NONE);
 	}
 
-	public void undoLastAction() {
-		Score newScore = oldScore;
-		oldScore = currentScore;
-		setScore(newScore);
-	}
+
 
 	public void setScore(Score newScore) {
 		if (!currentScore.equals(newScore)) {
-			oldScore = currentScore;
 			currentScore = newScore;
 			displayCurrentScore();
 		}
