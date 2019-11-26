@@ -12,12 +12,14 @@ class IntegrationTests {
 
 	private ByteArrayOutputStream stdout;
 	private PrintStream originalStdout;
+	private InputStream originalStdin;
 
 	@BeforeEach
 	void init() {
 		stdout = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(stdout);
 		originalStdout = System.out;
+		originalStdin = System.in;
 		System.setOut(ps);
 	}
 
@@ -34,10 +36,12 @@ class IntegrationTests {
 		assertEquals(stdoutLines.get(0), "000:000");
 	}
 
-	// @Test
-	void consoleAppInterpretsInputLineByLineAndCanBeQuit() {
-		// Todo: Redirect stdin to accept input from tests
-		fail("Not implemented yet");
+	@Test
+	void consoleAppInterpretsInputLineByLineAndCanBeQuit() throws InterruptedException {
+		InputStream stdin = new ByteArrayInputStream((String.format("a%n1%nb%n3%nq").getBytes()));
+		System.setIn(stdin);
+		startConsoleApp();
+		System.setIn(originalStdin);
 	}
 
 	private void startConsoleApp(final String... args) throws InterruptedException {

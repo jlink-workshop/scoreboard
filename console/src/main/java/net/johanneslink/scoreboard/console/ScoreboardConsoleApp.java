@@ -35,13 +35,13 @@ public class ScoreboardConsoleApp implements ScoreboardView {
 				presenter.select(Team.B);
 				break;
 			case SCORE_1:
-				presenter.score(Points.One, presenter.currentSelectedTeam);
+				presenter.score(Points.One);
 				break;
 			case SCORE_2:
-				presenter.score(Points.Two, presenter.currentSelectedTeam);
+				presenter.score(Points.Two);
 				break;
 			case SCORE_3:
-				presenter.score(Points.Three, presenter.currentSelectedTeam);
+				presenter.score(Points.Three);
 				break;
 			case UNDO:
 				presenter.undoLastAction();

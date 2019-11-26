@@ -84,21 +84,21 @@ class ScoreboardConsoleAppTests {
 		void actionScore1CallsScorePoints1OnPresenter() {
 			when(interpreter.parse(anyString())).thenReturn(Action.SCORE_1, Action.QUIT);
 			app.run(presenter, interpreter);
-			verify(presenter).score(Points.One, verify(presenter).currentSelectedTeam);
+			verify(presenter).score(Points.One);
 		}
 
 		@Test
 		void actionScore2CallsScorePoints2OnPresenter() {
 			when(interpreter.parse(anyString())).thenReturn(Action.SCORE_2, Action.QUIT);
 			app.run(presenter, interpreter);
-			verify(presenter).score(Points.Two, verify(presenter).currentSelectedTeam);
+			verify(presenter).score(Points.Two);
 		}
 
 		@Test
 		void actionScore3CallsScorePoints3OnPresenter() {
 			when(interpreter.parse(anyString())).thenReturn(Action.SCORE_3, Action.QUIT);
 			app.run(presenter, interpreter);
-			verify(presenter).score(Points.Three, verify(presenter).currentSelectedTeam);
+			verify(presenter).score(Points.Three);
 		}
 
 		@Test
