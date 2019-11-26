@@ -1,1 +1,1 @@
-.\gradlew build && move console\build\libs\scoreboard-console.jar deployment\scoreboard-console.jar
+.\gradlew build && move /Y console\build\libs\scoreboard-console.jar deployment\scoreboard-console.jar
