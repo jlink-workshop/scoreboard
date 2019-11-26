@@ -5,7 +5,7 @@ Website is published on https://jlink-workshop.github.io/scoreboard/
 
 # Architecture diagram
 
-![Drag Racing](Architekturdiagramm.png)
+![Drag Racing](Architekturbild.png)
 
 # Deployment instructions
 
