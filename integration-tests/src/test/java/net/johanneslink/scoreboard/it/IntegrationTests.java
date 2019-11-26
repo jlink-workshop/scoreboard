@@ -26,6 +26,7 @@ class IntegrationTests {
 	@AfterEach
 	void reset() {
 		System.setOut(originalStdout);
+		System.setIn(originalStdin);
 	}
 
 	@Test
@@ -37,11 +38,13 @@ class IntegrationTests {
 	}
 
 	@Test
-	void consoleAppInterpretsInputLineByLineAndCanBeQuit() throws InterruptedException {
+	void consoleAppInterpretsInputLineByLineAndCanBeQuit() throws Exception {
 		InputStream stdin = new ByteArrayInputStream((String.format("a%n1%nb%n3%nq").getBytes()));
 		System.setIn(stdin);
 		startConsoleApp();
-		System.setIn(originalStdin);
+		List<String> stdoutLines = stdoutLines();
+		assertEquals(5, stdoutLines.size());
+		assertEquals(stdoutLines.get(4), "001:003");
 	}
 
 	private void startConsoleApp(final String... args) throws InterruptedException {
