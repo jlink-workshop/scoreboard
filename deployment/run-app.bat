@@ -1,1 +1,1 @@
-java -jar scoreboard.jar
+java -jar scoreboard-console.jar

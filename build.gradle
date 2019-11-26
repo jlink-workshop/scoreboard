@@ -9,10 +9,9 @@ subprojects { subproj ->
 
 	apply plugin: 'java'
 
-	compileTestJava {
-		sourceCompatibility = 1.8
-		targetCompatibility = 1.8
-		options.compilerArgs += '-parameters'
+	java {
+		sourceCompatibility = JavaVersion.VERSION_1_8
+		targetCompatibility = JavaVersion.VERSION_1_8
 	}
 
 	test {

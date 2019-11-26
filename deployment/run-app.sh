@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-java -jar scoreboard.jar
+java -jar scoreboard-console.jar
