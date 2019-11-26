@@ -4,6 +4,7 @@ public class ScoreboardPresenter {
 
 	private ScoreboardView view;
 	private Score currentScore = Score.ab(0, 0);
+	private Score oldScore = Score.ab(0, 0);
 	private Team currentSelectedTeam = Team.NONE;
 
 	public void register(ScoreboardView view) {
@@ -30,8 +31,15 @@ public class ScoreboardPresenter {
 		select(Team.NONE);
 	}
 
+	public void undoLastAction() {
+		Score newScore = oldScore;
+		oldScore = currentScore;
+		setScore(newScore);
+	}
+
 	public void setScore(Score newScore) {
 		if (!currentScore.equals(newScore)) {
+			oldScore = currentScore;
 			currentScore = newScore;
 			displayCurrentScore();
 		}

@@ -59,6 +59,43 @@ class ScoreboardPresenterTests implements ScoreboardView {
 		}
 
 		@Test
+		void undoAction() {
+			presenter.select(Team.A);
+			presenter.score(Points.Two);
+			presenter.select(Team.A);
+			presenter.score(Points.Three);
+			presenter.undoLastAction();
+			assertEquals(Score.ab(2, 0), lastDisplayedScore);
+		}
+
+		@Test
+		void undoActionTwice() {
+			presenter.select(Team.A);
+			presenter.score(Points.Two);
+			presenter.select(Team.A);
+			presenter.score(Points.Three);
+			presenter.undoLastAction();
+			presenter.undoLastAction();
+			assertEquals(Score.ab(5, 0), lastDisplayedScore);
+		}
+
+		@Test
+		void undoActionAfterSeveralScores() {
+			presenter.select(Team.A);
+			presenter.score(Points.Two);
+			presenter.select(Team.A);
+			presenter.score(Points.Two);
+			presenter.select(Team.A);
+			presenter.select(Team.NONE);
+			presenter.score(Points.One);
+			presenter.select(Team.B);
+			presenter.undoLastAction();
+			assertEquals(Score.ab(2, 0), lastDisplayedScore);
+			presenter.undoLastAction();
+			assertEquals(Score.ab(4, 0), lastDisplayedScore);
+		}
+
+		@Test
 		void scoreInitialPointForTeamB() {
 			presenter.select(Team.B);
 			presenter.score(Points.Three);
