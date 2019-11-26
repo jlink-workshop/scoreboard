@@ -39,12 +39,11 @@ class IntegrationTests {
 
 	@Test
 	void consoleAppInterpretsInputLineByLineAndCanBeQuit() throws Exception {
-		InputStream stdin = new ByteArrayInputStream((String.format("a%n1%nb%n3%nq").getBytes()));
-		System.setIn(stdin);
+		System.setIn(new ByteArrayInputStream((String.format("a%n1%nb%n3%nq").getBytes())));
 		startConsoleApp();
 		List<String> stdoutLines = stdoutLines();
 		assertEquals(5, stdoutLines.size());
-		assertEquals(stdoutLines.get(4), "001:003");
+		assertEquals("001:003", stdoutLines.get(4));
 	}
 
 	private void startConsoleApp(final String... args) throws InterruptedException {
