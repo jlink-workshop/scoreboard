@@ -23,6 +23,9 @@ public class DefaultCommandInterpreter implements CommandInterpreter {
 			case "score 3":
 			case "3":
 				return Action.SCORE_3;
+			case "u":
+			case "undo":
+				return Action.UNDO;
 			case "help":
 			case "h":
 			case "?":

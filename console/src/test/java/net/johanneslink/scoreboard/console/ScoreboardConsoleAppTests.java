@@ -102,6 +102,13 @@ class ScoreboardConsoleAppTests {
 		}
 
 		@Test
+		void actionUndoCallsUndoLastActionPresenter() {
+			when(interpreter.parse(anyString())).thenReturn(Action.SCORE_3, Action.UNDO, Action.QUIT);
+			app.run(presenter, interpreter);
+			verify(presenter).undoLastAction();
+		}
+
+		@Test
 		void actionHelpDisplaysListOfCommands() {
 			when(interpreter.parse(anyString())).thenReturn(Action.HELP, Action.QUIT);
 			app.run(presenter, interpreter);
@@ -111,6 +118,7 @@ class ScoreboardConsoleAppTests {
 			verify(console).println(startsWith("Score [1] -"));
 			verify(console).println(startsWith("Score [2] -"));
 			verify(console).println(startsWith("Score [3] -"));
+			verify(console).println(startsWith("[U]ndo -"));
 			verify(console).println(startsWith("[Q]uit -"));
 			verify(console).println(startsWith("[?|H]elp -"));
 		}

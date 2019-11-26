@@ -47,6 +47,12 @@ class DefaultCommandInterpreterTest {
 	}
 
 	@Test
+	void interpretUndo() {
+		assertEquals(Action.UNDO, interpreter.parse("u"));
+		assertEquals(Action.UNDO, interpreter.parse("undo"));
+	}
+
+	@Test
 	void interpretHelp() {
 		assertEquals(Action.HELP, interpreter.parse("?"));
 		assertEquals(Action.HELP, interpreter.parse("h"));
