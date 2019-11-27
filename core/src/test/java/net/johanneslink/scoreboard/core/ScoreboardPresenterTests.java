@@ -96,6 +96,13 @@ class ScoreboardPresenterTests implements ScoreboardView {
 		}
 
 		@Test
+		void undoActionInitially() {
+			lastDisplayedScore = null;
+			presenter.undoLastAction();
+			assertEquals(Score.ab(0, 0), lastDisplayedScore);
+		}
+
+		@Test
 		void scoreInitialPointForTeamB() {
 			presenter.select(Team.B);
 			presenter.score(Points.Three);
@@ -126,7 +133,7 @@ class ScoreboardPresenterTests implements ScoreboardView {
 			presenter.score(Points.One);
 			presenter.score(Points.Two);
 			presenter.score(Points.Three);
-			assertNull(lastDisplayedScore);
+			assertEquals(Score.ab(22, 33), lastDisplayedScore);
 		}
 	}
 

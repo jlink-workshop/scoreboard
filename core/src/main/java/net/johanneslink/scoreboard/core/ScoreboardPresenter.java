@@ -33,8 +33,8 @@ public class ScoreboardPresenter {
 		if (!currentScore.equals(newScore)) {
 			oldScore = currentScore;
 			currentScore = newScore;
-			displayCurrentScore();
 		}
+		displayCurrentScore();
 	}
 
 	private void displayCurrentScore() {
