@@ -2,6 +2,7 @@ package net.johanneslink.scoreboard.it;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 import net.johanneslink.scoreboard.console.Main;
 import org.junit.jupiter.api.*;
@@ -47,13 +48,9 @@ class IntegrationTests {
 	}
 
 	private ByteArrayInputStream simulateStdin(List<String> inputSequence) {
-		String input = "";
-		Iterator<String> inputIterator = inputSequence.iterator();
-		input = inputIterator.next() + "%n";
-		while (inputIterator.hasNext()) {
-			input = input + inputIterator.next() + "%n";
-		}
-		return new ByteArrayInputStream((String.format(input).getBytes()));
+		AtomicReference<String> input = new AtomicReference<>("");
+		inputSequence.forEach(command -> input.set(input + command + "%n"));
+		return new ByteArrayInputStream((String.format(input.get()).getBytes()));
 	}
 
 	private void startConsoleApp(final String... args) throws InterruptedException {
