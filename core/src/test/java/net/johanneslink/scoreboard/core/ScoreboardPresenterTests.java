@@ -83,6 +83,15 @@ class ScoreboardPresenterTests implements ScoreboardView {
 		}
 
 		@Test
+		void minusTwiceWithoutTeamReselection() {
+			presenter.setScore(Score.ab(5, 3));
+			presenter.select(Team.A);
+			presenter.minus();
+			presenter.minus();
+			assertEquals(Score.ab(3, 3), lastDisplayedScore);
+		}
+
+		@Test
 		void undoAction() {
 			presenter.select(Team.A);
 			presenter.score(Points.Two);
