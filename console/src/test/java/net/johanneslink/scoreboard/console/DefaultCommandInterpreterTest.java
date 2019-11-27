@@ -47,6 +47,12 @@ class DefaultCommandInterpreterTest {
 	}
 
 	@Test
+	void interpretMinus() {
+		assertEquals(Action.MINUS, interpreter.parse("-"));
+		assertEquals(Action.MINUS, interpreter.parse("minus"));
+	}
+
+	@Test
 	void interpretUndo() {
 		assertEquals(Action.UNDO, interpreter.parse("u"));
 		assertEquals(Action.UNDO, interpreter.parse("undo"));
