@@ -39,12 +39,21 @@ class IntegrationTests {
 
 	@Test
 	void consoleAppInterpretsInputLineByLineAndCanBeQuit() throws Exception {
-		// todo: Extract into method simulateStdin("a", "1", ...)
-		System.setIn(new ByteArrayInputStream((String.format("a%n1%nb%n3%nq").getBytes())));
+		System.setIn(simulateStdin(Arrays.asList("a", "1", "b", "3", "q")));
 		startConsoleApp();
 		List<String> stdoutLines = stdoutLines();
 		assertEquals(5, stdoutLines.size());
 		assertEquals("001:003", stdoutLines.get(4));
+	}
+
+	private ByteArrayInputStream simulateStdin(List<String> inputSequence) {
+		String input = "";
+		Iterator<String> inputIterator = inputSequence.iterator();
+		input = inputIterator.next() + "%n";
+		while (inputIterator.hasNext()) {
+			input = input + inputIterator.next() + "%n";
+		}
+		return new ByteArrayInputStream((String.format(input).getBytes()));
 	}
 
 	private void startConsoleApp(final String... args) throws InterruptedException {
