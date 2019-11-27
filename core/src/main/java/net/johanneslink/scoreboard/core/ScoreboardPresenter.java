@@ -19,7 +19,7 @@ public class ScoreboardPresenter {
 	}
 
 	public void score(Points points) {
-		setScore(currentSelectedTeam.getScore(points, this.currentScore));
+		setScore(currentSelectedTeam.incrementScore(points, this.currentScore));
 		select(Team.NONE);
 	}
 
@@ -45,4 +45,7 @@ public class ScoreboardPresenter {
 		view.displaySelectedTeam(currentSelectedTeam);
 	}
 
+	public void minus() {
+		setScore(currentSelectedTeam.decrementScore(Points.One, this.currentScore));
+	}
 }

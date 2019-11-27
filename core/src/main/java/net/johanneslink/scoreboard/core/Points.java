@@ -9,7 +9,15 @@ public enum Points {
 		this.value = value;
 	}
 
-	public int useToInc(int number) {
-		return number + value;
+	public int useToInc(int teamScore) {
+		return teamScore + value;
+	}
+
+	public int useToDec(int teamScore) {
+		if (teamScore < value) {
+			return teamScore;
+		} else {
+			return teamScore - value;
+		}
 	}
 }

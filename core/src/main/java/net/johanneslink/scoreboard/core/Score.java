@@ -1,5 +1,4 @@
 package net.johanneslink.scoreboard.core;
-
 public class Score {
 
 	public static Score ab(int teamA, int teamB) {
@@ -50,5 +49,13 @@ public class Score {
 
 	Score incTeamBBy(Points points) {
 		return ab(teamA, points.useToInc(teamB));
+	}
+
+	Score decTeamABy(Points points) {
+		return ab(points.useToDec(teamA), teamB);
+	}
+
+	Score decTeamBBy(Points points) {
+		return ab(teamA, points.useToDec(teamB));
 	}
 }

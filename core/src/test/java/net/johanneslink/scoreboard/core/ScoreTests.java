@@ -20,6 +20,7 @@ class ScoreTests {
 		});
 	}
 
+
 	@Test
 	void scoreIsFormattedWith3Digits() {
 		assertEquals("001:009", Score.ab(1, 9).toString());

@@ -3,17 +3,27 @@ package net.johanneslink.scoreboard.core;
 public enum Team {
 	NONE,
 	A {
-		Score getScore(Points points, Score currentScore) {
+		Score incrementScore(Points points, Score currentScore) {
 			return currentScore.incTeamABy(points);
+		}
+		Score decrementScore(Points points, Score currentScore) {
+			return currentScore.decTeamABy(points);
 		}
 	},
 	B {
-		Score getScore(Points points, Score currentScore) {
+		Score incrementScore(Points points, Score currentScore) {
 			return currentScore.incTeamBBy(points);
+		}
+		Score decrementScore(Points points, Score currentScore) {
+			return currentScore.decTeamBBy(points);
 		}
 	};
 
-	Score getScore(Points points, Score currentScore) {
+	Score incrementScore(Points points, Score currentScore) {
+		return currentScore;
+	}
+
+	Score decrementScore(Points points, Score currentScore) {
 		return currentScore;
 	}
 }
