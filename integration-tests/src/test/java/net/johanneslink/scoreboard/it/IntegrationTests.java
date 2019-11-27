@@ -39,6 +39,7 @@ class IntegrationTests {
 
 	@Test
 	void consoleAppInterpretsInputLineByLineAndCanBeQuit() throws Exception {
+		// todo: Extract into method simulateStdin("a", "1", ...)
 		System.setIn(new ByteArrayInputStream((String.format("a%n1%nb%n3%nq").getBytes())));
 		startConsoleApp();
 		List<String> stdoutLines = stdoutLines();
