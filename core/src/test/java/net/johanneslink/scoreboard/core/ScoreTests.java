@@ -43,4 +43,21 @@ class ScoreTests {
 		assertEquals(Score.ab(44, 101), score.incTeamBBy(Points.Two));
 		assertEquals(Score.ab(44, 102), score.incTeamBBy(Points.Three));
 	}
+
+	@Test
+	void decrementScoreOfTeamA() {
+		Score score = Score.ab(12, 33);
+		assertEquals(Score.ab(11, 33), score.decTeamABy(Points.One));
+		assertEquals(Score.ab(10, 33), score.decTeamABy(Points.Two));
+		assertEquals(Score.ab(9, 33), score.decTeamABy(Points.Three));
+	}
+
+	@Test
+	void decrementScoreOfTeamB() {
+		Score score = Score.ab(44, 99);
+		assertEquals(Score.ab(44, 98), score.decTeamBBy(Points.One));
+		assertEquals(Score.ab(44, 97), score.decTeamBBy(Points.Two));
+		assertEquals(Score.ab(44, 96), score.decTeamBBy(Points.Three));
+	}
+
 }
