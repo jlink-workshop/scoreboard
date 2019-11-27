@@ -1,14 +1,17 @@
 package net.johanneslink.scoreboard.core;
 
 import org.junit.jupiter.api.*;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ScoreboardPresenterTests implements ScoreboardView {
 
 	private ScoreboardPresenter presenter;
 	private Team lastSelectedTeam;
 	private Score lastDisplayedScore;
+	private ScoreSaver scoreSaver;
 
 	@BeforeEach
 	void initialize() {
@@ -24,6 +27,25 @@ class ScoreboardPresenterTests implements ScoreboardView {
 		@Test
 		void initialScoreIs0to0() {
 			assertEquals(Score.ab(0, 0), lastDisplayedScore);
+		}
+
+		@Test
+		void saveOnScoreChange() {
+			scoreSaver = Mockito.mock(ScoreSaver.class);
+			when(scoreSaver.load()).thenReturn(Score.ab(0, 0));
+			presenter.register(scoreSaver);
+			Score ab = Score.ab(3, 0);
+			presenter.setScore(ab);
+			verify(scoreSaver).save(ab);
+		}
+
+		@Test
+		void loadOnScoreSaverRegistration() {
+			scoreSaver = Mockito.mock(ScoreSaver.class);
+			Score toBeLoaded = Score.ab(3, 4);
+			when(scoreSaver.load()).thenReturn(toBeLoaded);
+			presenter.register(scoreSaver);
+			assertEquals(toBeLoaded, lastDisplayedScore);
 		}
 
 		@Test

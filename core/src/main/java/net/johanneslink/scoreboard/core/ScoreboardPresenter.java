@@ -6,11 +6,18 @@ public class ScoreboardPresenter {
 	private Score currentScore = Score.ab(0, 0);
 	private Score oldScore = Score.ab(0, 0);
 	private Team currentSelectedTeam = Team.NONE;
+	private ScoreSaver scoreSaver = ScoreSaver.NULL;
 
 	public void register(ScoreboardView view) {
 		this.view = view;
 		displayCurrentScore();
 		displaySelectedTeam();
+	}
+
+	public void register(ScoreSaver scoreSaver) {
+		this.scoreSaver = scoreSaver;
+		setScore(this.scoreSaver.load());
+
 	}
 
 	public void select(Team team) {
@@ -33,6 +40,7 @@ public class ScoreboardPresenter {
 		if (!currentScore.equals(newScore)) {
 			oldScore = currentScore;
 			currentScore = newScore;
+			scoreSaver.save(currentScore);
 		}
 		displayCurrentScore();
 	}
@@ -48,4 +56,5 @@ public class ScoreboardPresenter {
 	public void minus() {
 		setScore(currentSelectedTeam.decrementScore(Points.One, this.currentScore));
 	}
+
 }
